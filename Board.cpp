@@ -11,14 +11,8 @@ Board::Board(int x, int y) {
 	initialBoard();
 
 }
-Board::Board(Board b) {
-	r=x;
-	c=y;
 
-	initialBoard();
-
-}
-
+ffefer
 Board::~Board() {
 	delete board;
 }
