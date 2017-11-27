@@ -12,7 +12,7 @@ Board::Board(int x, int y) {
 
 }
 
-ffefer
+say hello!!!
 Board::~Board() {
 	delete board;
 }
