@@ -9,8 +9,10 @@ Board::Board(int x, int y) {
 	c=y;
 
 	initialBoard();
+
 }
 
+say hello!!!
 Board::~Board() {
 	delete board;
 }
