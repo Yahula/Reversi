@@ -12,7 +12,21 @@ Board::Board(int x, int y) {
 
 }
 
-say hello!!!
+Board::Board(Board* b) {
+    r=b->getRow();
+    c=b->getCol();
+    board = new int *[c];
+    for (int i=0; i<r; i++){
+        board[i] = new int[c];
+    }
+    for (int i=0; i<r; i++){
+        for (int j=0; j<c; j++){
+            board[i][j] = b->getCell(i,j);
+        }
+    }
+}
+
+
 Board::~Board() {
 	delete board;
 }
