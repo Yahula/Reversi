@@ -15,8 +15,15 @@ Board::Board(int x, int y) {
 Board::Board(Board* b) {
     r=b->getRow();
     c=b->getCol();
-    initialBoard();
-
+    board = new int *[c];
+    for (int i=0; i<r; i++){
+        board[i] = new int[c];
+    }
+    for (int i=0; i<r; i++){
+        for (int j=0; j<c; j++){
+            board[i][j] = b->getCell(i,j);
+        }
+    }
 }
 
 
