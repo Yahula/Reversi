@@ -12,7 +12,14 @@ Board::Board(int x, int y) {
 
 }
 
-say hello!!!
+Board::Board(Board* b) {
+    r=b->getRow();
+    c=b->getCol();
+    initialBoard();
+
+}
+
+
 Board::~Board() {
 	delete board;
 }
