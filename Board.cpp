@@ -9,6 +9,14 @@ Board::Board(int x, int y) {
 	c=y;
 
 	initialBoard();
+
+}
+Board::Board(Board b) {
+	r=x;
+	c=y;
+
+	initialBoard();
+
 }
 
 Board::~Board() {
