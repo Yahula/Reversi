@@ -7,7 +7,9 @@
 Console::Console(int r, int c) : Board(r,c){
 }
 
-Console::~Console() = default;
+Console::~Console() {
+
+}
 
 void Console::displayBoard() {
 	char row = '1';

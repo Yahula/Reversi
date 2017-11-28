@@ -32,7 +32,7 @@ public:
 	 * @param d - the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	void play(Disk* d);
+	void play(Disk* d, int* score);
 
 	/**
 	 * This method checks if a player has any moves
@@ -56,7 +56,7 @@ public:
 	 * @param changePath - defines if this is a check only (if there are moves for the player) or if this is the actual move that requires the flip of the disks
 	 * @return true if the player can play\ true if the disk flip succeded
 	 */
-	bool lookForDisk(Disk *d, int diraction, bool changePath);
+	bool lookForDisk(Disk *d, int diraction, bool changePath, int* score);
 
 };
 

@@ -18,7 +18,7 @@ public:
 	/**
 	 * constructor
 	 */
-	Game();
+	Game(int player);
 	/**
 	 * destructor
 	 */
@@ -51,6 +51,8 @@ private:
 	 * The rules of the game
 	 */
 	GameRules *gameRules;
+
+	 int* score;
 };
 
 #endif /* GAME_H_ */

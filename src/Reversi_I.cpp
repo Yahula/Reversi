@@ -11,7 +11,7 @@ Reversi_I::~Reversi_I() {
 	delete b;
 }
 
-void Reversi_I::play(Disk *d) {
+void Reversi_I::play(Disk *d, int* score) {
 	bool tryagain = true;
 	while(tryagain){
 		if(b->getCell(d->getRow(),d->getCol())!=0){
@@ -26,7 +26,7 @@ void Reversi_I::play(Disk *d) {
 		lookAround(d,v);
 		for (int k = 0; k < 8; ++k) {
 			if (v[k]==1) {
-				bool t =  lookForDisk(d, k, true);
+				bool t =  lookForDisk(d, k, true, score);
 				if(t){
 					tryagain = false;
 					b->setCell(d);
@@ -60,7 +60,7 @@ bool Reversi_I::canPlay(Player *p) {
 				lookAround(new Disk(i,j,p->getpNum()),lookarray);
 				for (int k = 0; k < 8; ++k) {
 					if (lookarray[k]==1) {
-						bool b =  lookForDisk(new Disk(i,j,p->getpNum()), k, false);
+						bool b =  lookForDisk(new Disk(i,j,p->getpNum()), k, false, nullptr);
 						if(b){return b;}
 					}
 				}
@@ -114,8 +114,9 @@ void Reversi_I::lookAround(Disk *d, vector<int> &v) {
 	}
 }
 
-bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
+bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath, int* score) {
 	bool isthereadisk = false;
+
 	if (direction==0){
 		for (int i = 2; i <= d->getCol(); ++i) {
 			if(b->getCell(d->getRow(),d->getCol()-i)==0){
@@ -126,6 +127,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 					if (changePath) {
 						for (int j = i - 1; j > 0; --j) {
 							b->setCell(new Disk(d->getRow(), d->getCol()-j, d->getPlayer()));
+							if(j==i-1){
+								if (d->getPlayer() == 1){score[0] ++;}
+								if (d->getPlayer() == -1){score[1] ++;}
+							}
+							if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+							if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 						}
 					}
 					isthereadisk = true;
@@ -141,6 +148,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()-j, d->getCol()-j, d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -155,6 +168,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()-j, d->getCol(), d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -169,6 +188,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()-j, d->getCol()+j, d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -183,6 +208,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow(), d->getCol()+j, d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -197,6 +228,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()+j, d->getCol()+j, d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -211,6 +248,12 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 				if(changePath){
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()+j, d->getCol(), d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
@@ -223,8 +266,15 @@ bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
 			if (b->getCell(d->getRow()+i,d->getCol()-i)==0){break;}
 			if(b->getCell(d->getRow()+i,d->getCol()-i)==d->getPlayer()){
 				if(changePath){
+
 					for (int j = i-1; j > 0; --j) {
 						b->setCell(new Disk(d->getRow()+j, d->getCol()-j, d->getPlayer()));
+						if(j==i-1){
+							if (d->getPlayer() == 1){score[0] ++;}
+							if (d->getPlayer() == -1){score[1] ++;}
+						}
+						if (d->getPlayer() == 1){score[0] ++; score[1] --;}
+						if (d->getPlayer() == -1){score[0] --; score[1] ++;}
 					}
 				}
 				isthereadisk = true;
