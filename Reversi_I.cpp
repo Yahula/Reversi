@@ -11,281 +11,228 @@ Reversi_I::~Reversi_I() {
 	delete b;
 }
 
-bool Reversi_I::play(Disk *d) {
-	int* dir = lookAround(d);
-	if (dir[0] == -1){
-		return false;
-	}
-	else{
-		if (lookForDisk(d,dir,true)){
-			cout<<"You're on fire!!!" <<endl;
-			return true;
+void Reversi_I::play(Disk *d) {
+	bool tryagain = true;
+	while(tryagain){
+		if(b->getCell(d->getRow(),d->getCol())!=0){
+			cout<< "this spot is taken! try again:" << endl;
+			int row, col;
+			cin>>row>>col;
+			d->setRow(row-1);
+			d->setCol(col-1);
+			continue;
 		}
-		else{
-			return false;
+		vector<int> v(8);
+		lookAround(d,v);
+		for (int k = 0; k < 8; ++k) {
+			if (v[k]==1) {
+				bool t =  lookForDisk(d, k, true);
+				if(t){
+					tryagain = false;
+					b->setCell(d);
+
+				}
+			}
+		}
+		if(tryagain){
+			cout<< "you can't put it there! try again:" << endl;
+			int row, col;
+			cin>>row>>col;
+			while (!cin >> row || !cin << col) {
+				cout << "this is not chess! only numbers can be placed"<<endl;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cin>>row>>col;
+			}
+			d->setRow(row-1);
+			d->setCol(col-1);
 		}
 	}
+
 }
 
 bool Reversi_I::canPlay(Player *p) {
-	for (int i=0; i<this->b->getRow(); i++){
-		for(int j=0; j<this->b->getCol(); j++){
-			if (this->b->getCell(i,j) == 0){
-				int* dir = new int [8];
-				dir = lookAround(new Disk(i,j,p->getpNum()));
-				if (dir[0] == -1){
-					continue;
-				}
-				else{
-					if (lookForDisk(new Disk(i,j,p->getpNum()),dir,false)){
-						return true;
-					}
-					else{
-						continue;
+
+	for (int i = 0; i < b->getRow(); ++i) {
+		for (int j = 0; j < b->getCol(); ++j) {
+			if(b->getCell(i,j)==0){
+				vector<int> lookarray(8);
+				lookAround(new Disk(i,j,p->getpNum()),lookarray);
+				for (int k = 0; k < 8; ++k) {
+					if (lookarray[k]==1) {
+						bool b =  lookForDisk(new Disk(i,j,p->getpNum()), k, false);
+						if(b){return b;}
 					}
 				}
 			}
 		}
 	}
+
 	return false;
 }
 
-int* Reversi_I::lookAround(Disk *d) {
-	int r = d->getRow();
-	int c = d->getCol();
-	int p = d->getPlayer();
-	int* dir = new int[8];
-	bool b = false;
-
-	for(int i=0; i<8; i++){
-		dir[i]=0;
+void Reversi_I::lookAround(Disk *d, vector<int> &v) {
+	if(d->getCol()-1>=0) {
+		if(b->getCell(d->getRow(),d->getCol()-1)==-d->getPlayer()){
+			v[0]=1;
+		}
 	}
-
-
-	if ((c!=0) && (this->b->getCell(r,c-1)) == -1*p){
-		dir[0] = 1;
-		b=true;
+	if((d->getCol()-1)>=0&&(d->getRow()-1)>=0){
+		if(b->getCell(d->getRow()-1,d->getCol()-1)==-d->getPlayer()){
+			v[1]=1;
+		}
 	}
-	if ((c!=0)&&(r!=0)&&(this->b->getCell(r-1,c-1) == -1*p)){
-		dir[1] = 1;
-		b=true;
+	if (d->getRow()-1>=0) {
+		if(b->getCell(d->getRow()-1,d->getCol())==-d->getPlayer()){
+			v[2]=1;
+		}
 	}
-	if ((r!=0)&&(this->b->getCell(r-1,c) == -1*p)){
-		dir[2] = 1;
-		b=true;
+	if (d->getRow()-1>=0&&d->getCol()+1<b->getCol()) {
+		if(b->getCell(d->getRow()-1,d->getCol()+1)==-d->getPlayer()){
+			v[3]=1;
+		}
 	}
-	if ((r!=0)&&(c!=this->b->getCol()-1)&&(this->b->getCell(r-1,c+1)) == -1*p){
-		dir[3] = 1;
-		b=true;
+	if (d->getCol()+1<b->getCol()) {
+		if(b->getCell(d->getRow(),d->getCol()+1)==-d->getPlayer()){
+			v[4]=1;
+		}
 	}
-	if ((c!=this->b->getCol()-1)&&(this->b->getCell(r,c+1) == -1*p)){
-		dir[4] = 1;
-		b=true;
+	if (d->getCol()+1<b->getCol()&&d->getRow()+1<b->getRow()) {
+		if(b->getCell(d->getRow()+1,d->getCol()+1)==-d->getPlayer()){
+			v[5]=1;
+		}
 	}
-	if ((r!=this->b->getRow()-1)&&(c!=this->b->getCol()-1)&&(this->b->getCell(r+1,c+1) == -1*p)){
-		dir[5] = 1;
-		b=true;
+	if (d->getRow()+1<b->getRow()) {
+		if(b->getCell(d->getRow()+1,d->getCol())==-d->getPlayer()){
+			v[6]=1;
+		}
 	}
-	if ((r!=this->b->getRow()-1)&&(this->b->getCell(r+1,c) == -1*p)){
-		dir[6] = 1;
-		b=true;
+	if (d->getCol()-1>=0&&d->getRow()+1<b->getRow()) {
+		if(b->getCell(d->getRow()+1,d->getCol()-1)==-d->getPlayer()){
+			v[7]=1;
+		}
 	}
-	if ((r!=this->b->getRow()-1)&&(c!=0)&&(this->b->getCell(r+1,c-1) == -1*p)){
-		dir[7] = 1;
-		b=true;
-	}
-	if (!b){
-		dir[0] = -1;
-	}
-	delete d;
-	return dir;
 }
 
-bool Reversi_I::lookForDisk(Disk* d, int* diractions, bool changePath) {
-	int p = d->getPlayer();
-	int* dir = diractions;
-	bool moneyTime = false;
-	bool success = false;
-
-
-	for(int i=0; i<9; i++){
-		int r = d->getRow();
-		int c = d->getCol();
-
-		if(!moneyTime&&changePath&&i==8){
-			if(success){
-				this->b->setCell(new Disk (r,c,p));
+bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath) {
+	bool isthereadisk = false;
+	if (direction==0){
+		for (int i = 2; i <= d->getCol(); ++i) {
+			if(b->getCell(d->getRow(),d->getCol()-i)==0){
+				break;
 			}
-			else{
-				return success;
+			else {
+				if (b->getCell(d->getRow(), d->getCol() - i) == d->getPlayer()) {
+					if (changePath) {
+						for (int j = i - 1; j > 0; --j) {
+							b->setCell(new Disk(d->getRow(), d->getCol()-j, d->getPlayer()));
+						}
+					}
+					isthereadisk = true;
+					break;
+				}
 			}
-			moneyTime = true;
-			i=-1;
-			continue;
 		}
-
-		if(i==8){
-			break;
-		}
-
-		if(dir[i]==0){
-			continue;
-		}
-		else{
-			switch(i){
-			case 0:
-				while((c>0)&&(this->b->getCell(r,c-1)== -1*p)){
-					c--;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
+	}
+	if (direction==1){
+		for (int i = 2; i <= d->getCol()&&i<=d->getRow(); ++i) {
+			if (b->getCell(d->getRow()-i,d->getCol()-i)==0){break;}
+			if(b->getCell(d->getRow()-i,d->getCol()-i)==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()-j, d->getCol()-j, d->getPlayer()));
 					}
 				}
-				if (!moneyTime){
-					if(!isPathGood(r,c-1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 1:
-				while((c>0)&& (r>0)&&(this->b->getCell(r-1,c-1) == -1*p)){
-					c--;
-					r--;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-
-				}
-				if (!moneyTime){
-					if(!isPathGood(r-1,c-1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 2:
-				while((r>0) && (this->b->getCell(r-1,c)== -1*p)){
-					r--;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r-1,c)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 3:
-				while((c<b->getCol()-1) && (r>0) && (this->b->getCell(r-1,c+1) == -1*p)){
-					c++;
-					r--;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r-1,c+1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 4:
-				while((c<b->getCol()-1) && (this->b->getCell(r,c+1)== -1*p)){
-					c++;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r,c+1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 5:
-				while((c<b->getCol()-1) && (r<b->getRow()-1) && (this->b->getCell(r+1,c+1) == -1*p)){
-					c++;
-					r++;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r+1,c+1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 6:
-				while((r<b->getRow()-1) && (this->b->getCell(r+1,c)== -1*p)){
-					r++;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r+1,c)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-				break;
-
-			case 7:
-				while((c>0) && (r<b->getRow()-1) && (this->b->getCell(r+1,c-1) == -1*p)){
-					c--;
-					r++;
-					if(moneyTime){
-						this->b->setCell(new Disk (r,c,p));
-					}
-				}
-				if (!moneyTime){
-					if(!isPathGood(r+1,c-1)){
-						dir[i] = 0;
-					}
-					else{
-						success = true;
-					}
-				}
-
+				isthereadisk = true;
 				break;
 			}
 		}
 	}
-	delete dir;
-	return success;
+	if (direction==2){
+		for (int i = 2; i <= d->getRow(); ++i) {
+			if (b->getCell(d->getRow()-i,d->getCol())==0){break;}
+			if(b->getCell(d->getRow()-i,d->getCol())==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()-j, d->getCol(), d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	if (direction==3){
+		for (int i = 2; d->getCol()+i < b->getCol()&&i<=d->getRow(); ++i) {
+			if (b->getCell(d->getRow()-i,d->getCol()+i)==0){break;}
+			if(b->getCell(d->getRow()-i,d->getCol()+i)==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()-j, d->getCol()+j, d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	if (direction==4){
+		for (int i = 2; d->getCol()+i < b->getCol(); ++i) {
+			if (b->getCell(d->getRow(),d->getCol()+i)==0){break;}
+			if(b->getCell(d->getRow(),d->getCol()+i)==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow(), d->getCol()+j, d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	if (direction==5){
+		for (int i = 2; d->getCol()+i < b->getCol()&& d->getRow()+i<b->getRow(); ++i) {
+			if (b->getCell(d->getRow()+i,d->getCol()+i)==0){break;}
+			if(b->getCell(d->getRow()+i,d->getCol()+i)==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()+j, d->getCol()+j, d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	if (direction==6){
+		for (int i = 2; d->getRow()+i<b->getRow(); ++i) {
+			if (b->getCell(d->getRow()+i,d->getCol())==0){break;}
+			if(b->getCell(d->getRow()+i,d->getCol())==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()+j, d->getCol(), d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	if (direction==7){
+		for (int i = 2; i <= d->getCol() && d->getRow()+i < b->getRow(); ++i) {
+			if (b->getCell(d->getRow()+i,d->getCol()-i)==0){break;}
+			if(b->getCell(d->getRow()+i,d->getCol()-i)==d->getPlayer()){
+				if(changePath){
+					for (int j = i-1; j > 0; --j) {
+						b->setCell(new Disk(d->getRow()+j, d->getCol()-j, d->getPlayer()));
+					}
+				}
+				isthereadisk = true;
+				break;
+			}
+		}
+	}
+	return isthereadisk;
 }
 
-bool Reversi_I::isPathGood(int r, int c) {
-	if (c==-1||c==b->getCol()||r==-1||r==b->getRow()||this->b->getCell(r,c)==0){
-		return false;
-	}
-	else{
-		return true;
-	}
-}
+

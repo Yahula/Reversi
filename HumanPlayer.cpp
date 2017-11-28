@@ -12,8 +12,7 @@ HumanPlayer::HumanPlayer(int pNum){
 	this->pNum = pNum;
 }
 
-HumanPlayer::~HumanPlayer() {
-}
+HumanPlayer::~HumanPlayer() = default;
 
 Disk* HumanPlayer::move() {
 	cout<<endl<<"Do your thing!"<<endl<<"Choose location: Row Column"<<endl;
