@@ -25,6 +25,7 @@ public:
 	 */
 	Board(int r=8, int c=8);
 
+	Board(Board* b);
 	/**
 	 * Board Destructor
 	 */
