@@ -4,18 +4,15 @@
 
 #include "../include/GameRules.h"
 
-GameRules::GameRules(Board *b) {
-	this->b = b;
-}
+GameRules::GameRules() {}
 
 GameRules::~GameRules() {
-	delete b;
 }
 
-bool GameRules::isBoardFull() {
-	for(int i=0; i<this->b->getRow(); i++){
-		for(int j=0; j<this->b->getCol(); j++){
-			if (this->b->getCell(i,j) == 0){
+bool GameRules::isBoardFull(Board *b) {
+	for(int i=0; i<b->getRow(); i++){
+		for(int j=0; j<b->getCol(); j++){
+			if (b->getCell(i,j) == 0){
 				return false;
 			}
 		}

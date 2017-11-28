@@ -8,10 +8,10 @@
 Game::Game(int player) {
 
     this->myboard = new Console(4,4);
-	this->gameRules = new Reversi_I(myboard);
+	this->gameRules = new Reversi_I();
 	this->myboard->displayBoard();
 
-    if (player == 1){this->playerW = new AI_Player(1,this->gameRules,new Console(myboard));}
+    if (player == 1){this->playerW = new AI_Player(1,this->gameRules,this->myboard);}
     if (player == 2){this->playerW = new HumanPlayer(-1);}
 
     this->score = new int[2];
@@ -30,14 +30,14 @@ Game::~Game() {
 void Game::playGame() {
 	int flag = 0;
 	while(true){
-		if(gameRules->isBoardFull()){
+		if(gameRules->isBoardFull(myboard)){
 			cout<<"Board Full. Game Over!"<<endl;
 			break;
 		}
 		else{
 			cout<<"White player (O) Choose location: Row Column"<<endl;
-			if(this->gameRules->canPlay(this->playerW)){
-				this->gameRules->play(this->playerW->move(),this->score);
+			if(this->gameRules->canPlay(myboard,this->playerW)){
+				this->gameRules->play(myboard,this->playerW->move(),this->score);
 				cout<<endl<<"Score - "<<"White (O): "<<this->score[0]<<", Black (X): "<<this->score[1]<<endl<<endl;
 
 				this->myboard->displayBoard();
@@ -53,14 +53,14 @@ void Game::playGame() {
 			}
 		}
 
-		if(gameRules->isBoardFull()){
+		if(gameRules->isBoardFull(myboard)){
 			cout<<"Board Full. Game Over!"<<endl;
 			break;
 		}
 		else{
 			cout<<"Black player (X) Choose location: Row Column"<<endl;
-			if(this->gameRules->canPlay(this->playerB)){
-				this->gameRules->play(this->playerB->move(), this->score);
+			if(this->gameRules->canPlay(myboard,this->playerB)){
+				this->gameRules->play(myboard,this->playerB->move(), this->score);
 				cout<<endl<<"Score - "<<"White (O): "<<this->score[0]<<", Black (X): "<<this->score[1]<<endl<<endl;
 				this->myboard->displayBoard();
 				flag = 0;
