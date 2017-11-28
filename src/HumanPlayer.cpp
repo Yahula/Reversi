@@ -2,10 +2,8 @@
  * HumanPlayer.cpp
  */
 
-#include "HumanPlayer.h"
+#include "../include/HumanPlayer.h"
 #include <iostream>
-#include <limits>
-#include <string>
 using namespace std;
 
 HumanPlayer::HumanPlayer(int pNum){

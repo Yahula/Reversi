@@ -2,7 +2,7 @@
  * Disk.cpp
  */
 
-#include "Disk.h"
+#include "../include/Disk.h"
 
 Disk::Disk(int r, int c, int p) {
 	this->player = p;
