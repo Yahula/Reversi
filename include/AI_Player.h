@@ -6,6 +6,7 @@
 #define REVERSI_AI_PLAYER_H
 
 #include "Player.h"
+#include "GameRules.h"
 
 class AI_Player: public Player {
 
@@ -14,7 +15,7 @@ public:
      * Constructor
      * @param pNum - the player "id" -1 for black, 1 for white
      */
-    AI_Player(int pNum);
+    AI_Player(int pNum, GameRules* g, Board* b);
 
     /**
      * Destructor
@@ -26,6 +27,10 @@ public:
      * @return Disk - the chosen disk location and color to the game manager
      */
     virtual Disk* move();
+
+private:
+    GameRules* gameRules;
+    Board* board;
 
 };
 

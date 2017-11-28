@@ -7,6 +7,9 @@
 Console::Console(int r, int c) : Board(r,c){
 }
 
+Console::Console(Board* b) : Board(b){
+}
+
 Console::~Console() {
 
 }
