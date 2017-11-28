@@ -2,7 +2,7 @@
  * Game.cpp
  */
 
-#include "Game.h"
+#include "../include/Game.h"
 
 Game::Game() {
 	this->playerW = new HumanPlayer(1);

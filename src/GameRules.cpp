@@ -2,7 +2,7 @@
  * GameRules.cpp
  */
 
-#include "GameRules.h"
+#include "../include/GameRules.h"
 
 GameRules::GameRules(Board *b) {
 	this->b = b;
