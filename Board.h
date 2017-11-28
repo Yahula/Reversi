@@ -31,13 +31,6 @@ public:
 	virtual ~Board();
 
 	/**
-	 * InitialBoard Method
-	 * initialize the board according to the r,c members
-
-	 */
-	void initialBoard();
-
-	/**
 	 * DisplayBoard Method
 	 * each of the derived classes will implement a different way to display the board
 	 */
