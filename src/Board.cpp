@@ -8,7 +8,20 @@ Board::Board(int x, int y) {
 	r=x;
 	c=y;
 
-	initialBoard();
+	board = new int *[c];
+	for (int i=0; i<r; i++){
+		board[i] = new int[c];
+	}
+	for (int i=0; i<r; i++){
+		for (int j=0; j<c; j++){
+			board[i][j] = 0;
+		}
+	}
+
+	board[(r/2)-1][(c/2)-1] = 1;
+	board[(r/2)-1][c/2] = -1;
+	board[r/2][(c/2)-1] = -1;
+	board[r/2][c/2] = 1;
 
 }
 
@@ -31,24 +44,6 @@ Board::~Board() {
 	delete board;
 }
 
-
-void Board::initialBoard(){
-	board = new int *[c];
-		for (int i=0; i<r; i++){
-			board[i] = new int[c];
-		}
-		for (int i=0; i<r; i++){
-			for (int j=0; j<c; j++){
-				board[i][j] = 0;
-			}
-		}
-	board[(r/2)-1][(c/2)-1] = 1;
-	board[(r/2)-1][c/2] = -1;
-	board[r/2][(c/2)-1] = -1;
-	board[r/2][c/2] = 1;
-
-}
-
 int Board::getCol() const {
 	return c;
 }
@@ -64,5 +59,5 @@ int Board::getCell(int r, int c) const {
 
 void Board::setCell(Disk* d) {
 	this->board[d->getRow()][d->getCol()] = d->getPlayer();
-	delete d;
+//	delete d;
 }
