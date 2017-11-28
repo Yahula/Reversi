@@ -4,7 +4,7 @@
  * 305016297
  */
 
-#include "Game.h"
+#include "../include/Game.h"
 
 int main(){
 
