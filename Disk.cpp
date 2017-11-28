@@ -10,8 +10,7 @@ Disk::Disk(int r, int c, int p) {
 	this->col = c;
 }
 
-Disk::~Disk() {
-}
+Disk::~Disk() = default;
 
 int Disk::getCol() const {
 	return col;

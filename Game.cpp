@@ -24,15 +24,13 @@ void Game::playGame() {
 	int flag = 0;
 	while(true){
 		if(gameRules->isBoardFull()){
-			cout<<"Game Over!";
+			cout<<"Board Full. Game Over!";
 			break;
 		}
 		else{
 			cout<<"White player O - ";
 			if(this->gameRules->canPlay(this->playerW)){
-				while(!this->gameRules->play(this->playerW->move())){
-					cout<<"Not your best selection. Try again!"<<endl;
-				}
+				this->gameRules->play(this->playerW->move());
 				this->myboard->displayBoard();
 				flag=0;
 			}
@@ -43,22 +41,19 @@ void Game::playGame() {
 					break;
 				}
 				flag = 1;
-				continue;
 			}
 		}
 		if(gameRules->isBoardFull()){
-			cout<<"Game Over";
+			cout<<"Board Full. Game Over";
 			break;
 		}
 		else{
 			cout<<"Black player X - ";
 			if(this->gameRules->canPlay(this->playerB)){
-				while(!this->gameRules->play(this->playerB->move())){
-					cout<<"Not your best selection. Try again!"<<endl;
-				}
+				this->gameRules->play(this->playerB->move());
 				this->myboard->displayBoard();
 				flag = 0;
-			}
+			    }
 			else{
 
 				cout<<"Black has No moves!"<<endl;
@@ -67,7 +62,6 @@ void Game::playGame() {
 					break;
 				}
 				flag=1;
-				continue;
 			}
 		}
 	}

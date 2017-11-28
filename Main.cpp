@@ -10,5 +10,5 @@ int main(){
 
 	Game *reversi = new Game();
 	reversi->playGame();
-	delete reversi;
+	//delete reversi;
 }
