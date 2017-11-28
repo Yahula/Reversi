@@ -7,8 +7,11 @@
 #include "../include/Game.h"
 
 int main(){
+	int player;
+	cout<<"Welcome to Reversi! "<<endl<< "1 - Play against the computer"<<endl<<"2 - Play agains another player"<<endl;
+	cin>>player;
 
-	Game *reversi = new Game();
+	Game *reversi = new Game(player);
 	reversi->playGame();
 	//delete reversi;
 }
