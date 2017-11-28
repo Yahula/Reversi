@@ -20,7 +20,7 @@ public:
 	 * Constructor
 	 * @param b - the Game board
 	 */
-	Reversi_I(Board *b);
+	Reversi_I();
 
 	/**
 	 * Destructor
@@ -32,14 +32,14 @@ public:
 	 * @param d - the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	void play(Disk* d, int* score);
+	void play(Board *b,Disk* d, int* score);
 
 	/**
 	 * This method checks if a player has any moves
 	 * @param p - the current player
 	 * @return true if there is at least one move
 	 */
-	bool canPlay(Player *p);
+	bool canPlay(Board *b,Player *p);
 
 	/**
 	 * This method checks if there are any neighbours of the oponent player around the selected location
@@ -47,7 +47,7 @@ public:
 	 * @return - an array of 0-8 neighbours where 0 is the neighbour to the left and the next neighbour is the one where you go clockwise.
 	 * 	if the neighbour exist there will be 1 in the neighbour place otherwise 0. i.e. for the upper right neighbour there'll be 1 in the 3rd place of the array
 	 */
-	void lookAround(Disk *d, vector<int> &v);
+	void lookAround(Board *b,Disk *d, vector<int> &v);
 
 	/**
 	 * This method checks each neighbour and verifies that in it's other side (if there are more then one than in the end of this line) there is a disk with the same color of the current player
@@ -56,7 +56,7 @@ public:
 	 * @param changePath - defines if this is a check only (if there are moves for the player) or if this is the actual move that requires the flip of the disks
 	 * @return true if the player can play\ true if the disk flip succeded
 	 */
-	bool lookForDisk(Disk *d, int diraction, bool changePath, int* score);
+	bool lookForDisk(Board *b,Disk *d, int diraction, bool changePath, int* score);
 
 };
 

@@ -20,7 +20,7 @@ public:
 	 * Constructor
 	 * @param b - the game Board
 	 */
-	GameRules(Board *b);
+	GameRules();
 
 	/**
 	 * Destructor
@@ -32,26 +32,23 @@ public:
 	 * @param d  the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	virtual void play (Disk* d, int* score) = 0;
+	virtual void play (Board *b,Disk* d, int* score) = 0;
 
 	/**
 	 * This method checks if a player has any moves
 	 * @param p - the current player
 	 * @return true if there is at least one move
 	 */
-	virtual bool canPlay(Player* p) = 0;
+	virtual bool canPlay(Board *b,Player* p) = 0;
 
 	/**
 	 * This move checks if the board is full
 	 * @return true if the board full
 	 */
-	bool isBoardFull();
+	bool isBoardFull(Board *b);
 
 protected:
-	/**
-	 * The board of the game
-	 */
-	Board *b;
+
 };
 
 #endif /* GAMERULES_H_ */

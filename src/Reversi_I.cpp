@@ -4,14 +4,13 @@
 
 #include "../include/Reversi_I.h"
 
-Reversi_I::Reversi_I(Board *b) : GameRules(b){
+Reversi_I::Reversi_I(){
 }
 
 Reversi_I::~Reversi_I() {
-	delete b;
 }
 
-void Reversi_I::play(Disk *d, int* score) {
+void Reversi_I::play(Board *b, Disk *d, int* score) {
 	bool tryagain = true;
 	while(tryagain){
 		if(b->getCell(d->getRow(),d->getCol())!=0){
@@ -23,10 +22,10 @@ void Reversi_I::play(Disk *d, int* score) {
 			continue;
 		}
 		vector<int> v(8);
-		lookAround(d,v);
+		lookAround(b,d,v);
 		for (int k = 0; k < 8; ++k) {
 			if (v[k]==1) {
-				bool t =  lookForDisk(d, k, true, score);
+				bool t =  lookForDisk(b, d, k, true, score);
 				if(t){
 					tryagain = false;
 					b->setCell(d);
@@ -51,17 +50,17 @@ void Reversi_I::play(Disk *d, int* score) {
 
 }
 
-bool Reversi_I::canPlay(Player *p) {
+bool Reversi_I::canPlay(Board *b,Player *p) {
 
 	for (int i = 0; i < b->getRow(); ++i) {
 		for (int j = 0; j < b->getCol(); ++j) {
 			if(b->getCell(i,j)==0){
 				vector<int> lookarray(8);
-				lookAround(new Disk(i,j,p->getpNum()),lookarray);
+				lookAround(b,new Disk(i,j,p->getpNum()),lookarray);
 				for (int k = 0; k < 8; ++k) {
 					if (lookarray[k]==1) {
-						bool b =  lookForDisk(new Disk(i,j,p->getpNum()), k, false, nullptr);
-						if(b){return b;}
+						bool bol =  lookForDisk(b, new Disk(i,j,p->getpNum()), k, false, nullptr);
+						if(bol){return bol;}
 					}
 				}
 			}
@@ -71,7 +70,7 @@ bool Reversi_I::canPlay(Player *p) {
 	return false;
 }
 
-void Reversi_I::lookAround(Disk *d, vector<int> &v) {
+void Reversi_I::lookAround(Board *b,Disk *d, vector<int> &v) {
 	if(d->getCol()-1>=0) {
 		if(b->getCell(d->getRow(),d->getCol()-1)==-d->getPlayer()){
 			v[0]=1;
@@ -114,7 +113,7 @@ void Reversi_I::lookAround(Disk *d, vector<int> &v) {
 	}
 }
 
-bool Reversi_I::lookForDisk(Disk* d, int direction, bool changePath, int* score) {
+bool Reversi_I::lookForDisk(Board *b,Disk* d, int direction, bool changePath, int* score) {
 	bool isthereadisk = false;
 
 	if (direction==0){
