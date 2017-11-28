@@ -19,6 +19,7 @@ public:
 	 */
 	Console(int r=8, int c=8);
 
+	Console(Board* b);
 	/**
 	 * Desructor
 	 */

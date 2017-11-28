@@ -3,16 +3,18 @@
  */
 
 #include "../include/Game.h"
+#include "../include/AI_Player.h"
 
 Game::Game(int player) {
 
-	if (player == 1){this->playerW = new HumanPlayer(1);}
-	if (player == 1){this->playerW = new HumanPlayer(1);}
-	this->playerB = new HumanPlayer(-1);
-	this->myboard = new Console(4,4);
+    this->myboard = new Console(4,4);
 	this->gameRules = new Reversi_I(myboard);
 	this->myboard->displayBoard();
-	this->score = new int[2];
+
+    if (player == 1){this->playerW = new AI_Player(1,this->gameRules,new Console(myboard));}
+    if (player == 2){this->playerW = new HumanPlayer(-1);}
+
+    this->score = new int[2];
 	this->score[0] = 2; //White (O) player score
 	this->score[1] = 2; //Black (X) player score
 
