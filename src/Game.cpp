@@ -4,8 +4,10 @@
 
 #include "../include/Game.h"
 
-Game::Game() {
-	this->playerW = new HumanPlayer(1);
+Game::Game(int player) {
+
+	if (player == 1){this->playerW = new HumanPlayer(1);}
+	if (player == 1){this->playerW = new HumanPlayer(1);}
 	this->playerB = new HumanPlayer(-1);
 	this->myboard = new Console(4,4);
 	this->gameRules = new Reversi_I(myboard);

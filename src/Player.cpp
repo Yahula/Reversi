@@ -8,7 +8,9 @@ Player::Player() {
 	pNum=0;
 }
 
-Player::~Player() = default;
+Player::~Player() {
+
+}
 
 int Player::getpNum() const {
 	return pNum;
