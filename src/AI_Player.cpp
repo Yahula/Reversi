@@ -21,13 +21,16 @@ AI_Player::~AI_Player() {
 
 Disk* AI_Player::move() {
     int max = -100;
+    int temp;
     Disk disk(-1, -1, pNum);
     for (int i = 0; i < board->getRow(); ++i) {
         for (int j = 0; j < board->getCol(); ++j) {
             Disk d(i, j, pNum);
-            if (check_one_place(d) > max) {
+            temp = check_one_place(d);
+            if (temp > max) {
                 disk.setRow(i);
                 disk.setCol(j);
+                max=temp;
             }
         }
     }
@@ -36,9 +39,11 @@ Disk* AI_Player::move() {
 
 int AI_Player::check_one_place(Disk disk) {
     Console tempBoard(this->board);
-    if(0){//gameRules->play(tempBoard,disk)){
+    if(gameRules->canPlay(&tempBoard, pNum)){
+        Disk disk(-1,-1,-pNum);
         for (int i = 0; i < tempBoard.getRow(); ++i) {
             for (int j = 0; j < tempBoard.getCol(); ++j) {
+
 
 
             }
