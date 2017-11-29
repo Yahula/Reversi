@@ -23,6 +23,12 @@ public:
 	Reversi_I();
 
 	/**
+	 * copy constructor.
+	 * @param g the rules to copy.
+	 */
+	Reversi_I(GameRules* g);
+
+	/**
 	 * Destructor
 	 */
 	virtual ~Reversi_I();

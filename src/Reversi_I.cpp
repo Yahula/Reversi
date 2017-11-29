@@ -7,6 +7,8 @@
 Reversi_I::Reversi_I(){
 }
 
+Reversi_I::Reversi_I(GameRules* g) : GameRules(g) {}
+
 Reversi_I::~Reversi_I() {
 }
 
@@ -231,5 +233,7 @@ bool Reversi_I::lookForDisk(Board *b,Disk* d, int direction, bool changePath) {
 	}
 	return isthereadisk;
 }
+
+
 
 

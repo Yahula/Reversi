@@ -64,6 +64,8 @@ public:
 	 */
 	void setCell(Disk *d);
 
+
+
 protected:
 	/**
 	 * 2D matrix containing cells with values that represents the players disks on the board
@@ -76,6 +78,8 @@ protected:
 	 * the size of the rows (r) and columns (c) of the board
 	 */
 	int r,c;
+
+
 };
 
 #endif /* BOARD_H_ */

@@ -18,9 +18,14 @@ class GameRules {
 public:
 	/**
 	 * Constructor
-	 * @param b - the game Board
 	 */
 	GameRules();
+
+	/**
+	 *
+	 * @param g the gameboard to copy
+	 */
+	GameRules(GameRules* g);
 
 	/**
 	 * Destructor
