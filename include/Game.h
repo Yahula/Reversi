@@ -9,6 +9,8 @@
 #include "HumanPlayer.h"
 #include "Console.h"
 #include "Reversi_I.h"
+#include "AI_Player.h"
+
 
 /**
  * The Game class is the manager of our game
@@ -51,8 +53,6 @@ private:
 	 * The rules of the game
 	 */
 	GameRules *gameRules;
-
-	 int* score;
 };
 
 #endif /* GAME_H_ */

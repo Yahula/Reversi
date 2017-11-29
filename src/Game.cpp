@@ -3,20 +3,15 @@
  */
 
 #include "../include/Game.h"
-#include "../include/AI_Player.h"
 
 Game::Game(int player) {
+    this->myboard = new Console();
+    this->myboard->displayBoard();
 
-    this->myboard = new Console(4,4);
-	this->gameRules = new Reversi_I();
-	this->myboard->displayBoard();
-
-    if (player == 1){this->playerW = new AI_Player(1,this->gameRules,this->myboard);}
-    if (player == 2){this->playerW = new HumanPlayer(-1);}
-
-    this->score = new int[2];
-	this->score[0] = 2; //White (O) player score
-	this->score[1] = 2; //Black (X) player score
+    this->gameRules = new Reversi_I();
+	if (player == 1){this->playerW = new AI_Player(1,this->gameRules,this->myboard);}
+	if (player == 2){this->playerW = new HumanPlayer(1);}
+    this->playerB = new HumanPlayer(-1);
 
 }
 
@@ -37,8 +32,8 @@ void Game::playGame() {
 		else{
 			cout<<"White player (O) Choose location: Row Column"<<endl;
 			if(this->gameRules->canPlay(myboard,this->playerW)){
-				this->gameRules->play(myboard,this->playerW->move(),this->score);
-				cout<<endl<<"Score - "<<"White (O): "<<this->score[0]<<", Black (X): "<<this->score[1]<<endl<<endl;
+				this->gameRules->play(myboard,this->playerW->move());
+				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
 
 				this->myboard->displayBoard();
 				flag=0;
@@ -60,8 +55,8 @@ void Game::playGame() {
 		else{
 			cout<<"Black player (X) Choose location: Row Column"<<endl;
 			if(this->gameRules->canPlay(myboard,this->playerB)){
-				this->gameRules->play(myboard,this->playerB->move(), this->score);
-				cout<<endl<<"Score - "<<"White (O): "<<this->score[0]<<", Black (X): "<<this->score[1]<<endl<<endl;
+				this->gameRules->play(myboard,this->playerB->move());
+				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
 				this->myboard->displayBoard();
 				flag = 0;
 			    }
