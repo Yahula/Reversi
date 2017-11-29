@@ -25,8 +25,8 @@ bool GameRules::isBoardFull(Board *b) {
 }
 
 void GameRules::updateScore(int change, int winner){
-	if (winner == 1){this->score[0]+= change; this->score[1] -= change;}
-	if (winner == 2){this->score[0] -= change; this->score[1] += change;}
+	if (winner == 1){this->score[0]+= change; this->score[1] -= change-1;}
+	if (winner == 2){this->score[0] -= change-1; this->score[1] += change;}
 }
 
 
