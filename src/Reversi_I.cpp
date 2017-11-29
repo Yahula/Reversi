@@ -7,47 +7,29 @@
 Reversi_I::Reversi_I(){
 }
 
+Reversi_I::Reversi_I(GameRules* g) : GameRules(g) {}
+
 Reversi_I::~Reversi_I() {
 }
 
-void Reversi_I::play(Board *b, Disk *d) {
-	bool tryagain = true;
-	while(tryagain){
-		if(b->getCell(d->getRow(),d->getCol())!=0){
-			cout<< "this spot is taken! try again:" << endl;
-			int row, col;
-			cin>>row>>col;
-			d->setRow(row-1);
-			d->setCol(col-1);
-			continue;
-		}
-		vector<int> v(8);
-		lookAround(b,d,v);
-		for (int k = 0; k < 8; ++k) {
-			if (v[k]==1) {
-				bool t =  lookForDisk(b, d, k, true);
-				if(t){
-					tryagain = false;
-					b->setCell(d);
+bool Reversi_I::play(Board *b, Disk *d) {
+	bool didHePlay = false;
+    if(b->getCell(d->getRow(),d->getCol())!=0){
+        return false;
+    }
 
-				}
-			}
-		}
-		if(tryagain){
-			cout<< "you can't put it there! try again:" << endl;
-			int row, col;
-			cin>>row>>col;
-			while (!cin >> row || !cin << col) {
-				cout << "this is not chess! only numbers can be placed"<<endl;
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cin>>row>>col;
-			}
-			d->setRow(row-1);
-			d->setCol(col-1);
-		}
-	}
-
+    vector<int> v(8);
+    lookAround(b,d,v);
+    for (int k = 0; k < 8; ++k) {
+        if (v[k]==1) {
+            bool t =  lookForDisk(b, d, k, true);
+            if(t){
+                didHePlay = true;
+                b->setCell(d);
+            }
+        }
+    }
+    return didHePlay;
 }
 
 bool Reversi_I::canPlay(Board *b,Player *p) {
@@ -251,5 +233,7 @@ bool Reversi_I::lookForDisk(Board *b,Disk* d, int direction, bool changePath) {
 	}
 	return isthereadisk;
 }
+
+
 
 

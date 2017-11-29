@@ -5,6 +5,7 @@
 #include "../include/Board.h"
 
 Board::Board(int row , int col) {
+
 	this->r=row;
 	this->c=col;
 
@@ -61,3 +62,5 @@ void Board::setCell(Disk* d) {
 	this->board[d->getRow()][d->getCol()] = d->getPlayer();
 //	delete d;
 }
+
+

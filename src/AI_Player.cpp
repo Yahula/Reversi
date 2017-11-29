@@ -38,17 +38,28 @@ Disk* AI_Player::move() {
 }
 
 int AI_Player::check_one_place(Disk disk) {
-    /*Console tempBoard(this->board);
-    if(gameRules->canPlay(&tempBoard, this)){
-        Disk d(-1,-1,-pNum);
-        for (int i = 0; i < tempBoard.getRow(); ++i) {
-            for (int j = 0; j < tempBoard.getCol(); ++j) {
+    Console tempBoard(this->board);
+    Reversi_I tempRules(this -> gameRules);
+    bool played = tempRules.play(&tempBoard,&disk);
+    if (!played){
+        return -100;
+    }
 
-
-
+    int max = -100;
+    Disk d(-1,-1,-pNum);
+    for (int i = 0; i < tempBoard.getRow(); ++i) {
+        for (int j = 0; j < tempBoard.getCol(); ++j) {
+            d.setRow(i);
+            d.setCol(j);
+//            todo check all scenrions - can he play? is the baord full?...
+            if(tempRules.play(&tempBoard,&d)){
+                int temp = tempRules.getScore()[0]-tempRules.getScore()[1];
+                if(temp>max){
+                    max = temp;
+                }
             }
-
         }
     }
-    return 0;*/
+
+    return max;
 }

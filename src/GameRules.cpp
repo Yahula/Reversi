@@ -10,6 +10,11 @@ GameRules::GameRules() {
 	this->score[1] = 2; //Black (X) player score
 }
 
+GameRules::GameRules(GameRules* g) {
+	this -> score[0] = g->getScore()[0];
+	this -> score[1] = g->getScore()[1];
+}
+
 GameRules::~GameRules() {
 }
 

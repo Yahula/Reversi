@@ -4,8 +4,9 @@
 
 #include "../include/Console.h"
 
-Console::Console(int r, int c) : Board(r,c){
-}
+Console::Console(int r, int c) : Board(r,c){}
+
+Console::Console(Board *b) : Board(b) {}
 
 Console::~Console(){
 
@@ -61,3 +62,5 @@ void Console::displayBoard() {
         cout<<endl;
     }
 }
+
+
