@@ -2,8 +2,8 @@
 // Created by Yahel Ben ishay on 11/28/17.
 //
 
-#include "../gtest_src/gtest.h"
-
+#include "../gtest_src/googletest-master/googletest/include/gtest/gtest.h"
+#include <vector>
 using namespace std;
 
 

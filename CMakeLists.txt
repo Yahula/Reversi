@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 project(Reversi)
 
-set(CMAKE_CXX_STANDATD 98 -Wall -Wextra)
-#set(CMAKE_CCX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -pthread -Wextra")
+#set(CMAKE_CXX_STANDATD 98 -Wall -Wextra)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread")
 
-include_directories(gtest_src)
+add_subdirectory(gtest_src/googletest-master)
+include_directories(gtest_src/googletest-master/googletest/include)
+include_directories(gtest/googletest-master/googlemock/include)
 
 
 
@@ -17,8 +19,8 @@ set(TEST_FILES test/test_Board.cpp)
 
 add_executable(Reversi ${SOURCE_FILES})
 
-#add_executable(Run_tests test/gtest_main.cpp ${TEST_FILES})
+add_executable(Reversi_tests test/gtest_main.cpp ${TEST_FILES})
 
-#target_link_libraries(Run_tests gtest_src gtest_main)
+target_link_libraries(Reversi_tests gtest gtest_main)
 #target_link_libraries(Run_tests board)
 
