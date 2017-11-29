@@ -5,8 +5,7 @@
 #ifndef REVERSI_AI_PLAYER_H
 #define REVERSI_AI_PLAYER_H
 
-#include "Player.h"
-#include "GameRules.h"
+#include "Reversi_I.h"
 
 class AI_Player: public Player {
 

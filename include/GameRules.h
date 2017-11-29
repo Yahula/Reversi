@@ -10,7 +10,7 @@
 #include "Disk.h"
 #include "Player.h"
 #include "Board.h"
-
+#include <vector>
 /**
  * GameRules class is an abstract class which it's derived classes will define the different game rules
  */
@@ -32,7 +32,7 @@ public:
 	 * @param d  the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	virtual void play (Board *b,Disk* d, int* score) = 0;
+	virtual void play (Board *b,Disk* d) = 0;
 
 	/**
 	 * This method checks if a player has any moves
@@ -47,8 +47,12 @@ public:
 	 */
 	bool isBoardFull(Board *b);
 
-protected:
+	void updateScore(int change, int winner);
 
+	int* getScore();
+
+protected:
+	 int* score;
 };
 
 #endif /* GAMERULES_H_ */

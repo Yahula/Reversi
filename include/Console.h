@@ -17,7 +17,7 @@ public:
 	 * @param r - number of rows in the board that supposed to be printed
 	 * @param c - number of columns in the board that should be printed
 	 */
-	Console(int r=8, int c=8);
+	Console(int row=8, int col=8);
 
 	Console(Board* b);
 	/**

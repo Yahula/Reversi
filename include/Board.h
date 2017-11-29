@@ -23,7 +23,7 @@ public:
 	 * @param r - number of rows in the board (8 by default)
 	 * @param c - number of columns in the board (8 by default)
 	 */
-	Board(int r=8, int c=8);
+	Board(int row=8, int col=8);
 
 	Board(Board* b);
 	/**

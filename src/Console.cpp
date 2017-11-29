@@ -4,7 +4,7 @@
 
 #include "../include/Console.h"
 
-Console::Console(int r, int c) : Board(r,c){
+Console::Console(int row, int col) : Board(row,col){
 }
 
 Console::Console(Board* b) : Board(b){
