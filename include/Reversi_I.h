@@ -32,7 +32,7 @@ public:
 	 * @param d - the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	void play(Board *b,Disk* d);
+	bool play(Board *b,Disk* d);
 
 	/**
 	 * This method checks if a player has any moves

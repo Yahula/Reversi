@@ -32,7 +32,7 @@ public:
 	 * @param d  the desired move - where the player wants to put its disk
 	 * @return true if succeded
 	 */
-	virtual void play (Board *b,Disk* d) = 0;
+	virtual bool play (Board *b,Disk* d) = 0;
 
 	/**
 	 * This method checks if a player has any moves

@@ -32,7 +32,13 @@ void Game::playGame() {
 		else{
 			cout<<"White player (O) Choose location: Row Column"<<endl;
 			if(this->gameRules->canPlay(myboard,this->playerW)){
-				this->gameRules->play(myboard,this->playerW->move());
+
+                bool thereWasAMove;
+                thereWasAMove = this->gameRules->play(myboard,this->playerW->move());
+                while(!thereWasAMove){
+                    cout<<"can't place there! try agian: " << endl;
+                    thereWasAMove = this->gameRules->play(myboard,this->playerW->move());
+                }
 				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
 
 				this->myboard->displayBoard();
@@ -55,8 +61,13 @@ void Game::playGame() {
 		else{
 			cout<<"Black player (X) Choose location: Row Column"<<endl;
 			if(this->gameRules->canPlay(myboard,this->playerB)){
-				this->gameRules->play(myboard,this->playerB->move());
-				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
+                bool thereWasAMove;
+                thereWasAMove = this->gameRules->play(myboard,this->playerB->move());
+                while(!thereWasAMove){
+                    cout<<"oops! not there! try agian: " << endl;
+                    thereWasAMove = this->gameRules->play(myboard,this->playerB->move());
+                }
+                cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
 				this->myboard->displayBoard();
 				flag = 0;
 			    }
