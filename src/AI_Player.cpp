@@ -38,7 +38,7 @@ Disk* AI_Player::move() {
 }
 
 int AI_Player::check_one_place(Disk disk) {
-    Console tempBoard(this->board);
+    /*Console tempBoard(this->board);
     if(gameRules->canPlay(&tempBoard, this)){
         Disk d(-1,-1,-pNum);
         for (int i = 0; i < tempBoard.getRow(); ++i) {
@@ -50,5 +50,5 @@ int AI_Player::check_one_place(Disk disk) {
 
         }
     }
-    return 0;
+    return 0;*/
 }
