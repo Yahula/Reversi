@@ -13,6 +13,7 @@ AI_Player::AI_Player(int pNum, GameRules* g, Board* b){
     this->pNum = pNum;
     this->gameRules = g;
     this->board = b;
+    this->min=-100;
 
 }
 

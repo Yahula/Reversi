@@ -47,6 +47,7 @@ public:
 	 */
 	bool canPlay(Board *b,Player *p);
 
+protected:
 	/**
 	 * This method checks if there are any neighbours of the oponent player around the selected location
 	 * @param d - the desired disk location and color
