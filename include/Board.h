@@ -24,13 +24,20 @@ public:
 	 * @param c - number of columns in the board (8 by default)
 	 */
 	Board(int row=8, int col=8);
-
+/**
+ * copy constructor
+ * @param b the board to copy.
+ */
 	Board(Board* b);
 	/**
 	 * Board Destructor
 	 */
 	virtual ~Board();
 
+
+	/**
+	 * stats the board - fill it with zeros and the 4 disks in the middle.
+	 */
 	void initialBoard();
 
 
