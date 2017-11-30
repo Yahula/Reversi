@@ -19,8 +19,8 @@ protected:
     virtual void SetUp(){
         cout << "Setting up" << endl;
 
-        b->setCell(new Disk(4,4,-1));
-        b->setCell(new Disk(6,6,-1));
+        //b->setCell(new Disk(4,4,-1));
+        //b->setCell(new Disk(6,6,-1));
     }
     virtual void TearDown(){
         cout << "Tearing down" << endl;
@@ -30,14 +30,14 @@ protected:
     }
 
     GameRules *rules;
-    Board *b;
+    //Board *b;
     Player *p;
 };
 
 
 TEST_F(GameRules_test, ImpossibleToPlay)  {
 
-    EXPECT_FALSE(rules->canPlay(b,p));
+    EXPECT_FALSE(rules->canPlay(b,p));<<"can play is not good"
 
 }
 
