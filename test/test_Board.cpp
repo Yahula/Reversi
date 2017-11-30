@@ -20,3 +20,7 @@ TEST(BasicTests, TestThatWillWork) {
     }
 }
 
+TEST(BasicTests, theAI) {
+
+
+}
