@@ -22,15 +22,25 @@ public:
     virtual ~AI_Player();
 
     /**
-     * This method asks from the player to insert it's desired move
+     * This method tell the machine to make its move.
      * @return Disk - the chosen disk location and color to the game manager
      */
     virtual Disk* move();
 
 private:
     GameRules* gameRules;
+
+    
     Board* board;
+
+    /**
+     * this method check one stepahead - what could be the result of this action?
+     * @param Disk the location is question.
+     * @return the max score the oponnent can make if this move is chosen
+     */
     int check_one_place(Disk);
+
+
     int min;
 
 };

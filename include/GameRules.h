@@ -52,13 +52,29 @@ public:
 	 */
 	bool isBoardFull(Board *b);
 
-
-
+/**
+ * @return the current score
+ */
 	int* getScore();
 
 protected:
+	/**
+	 * keeps changing the score of the game as the game goes along.
+	 * @param change the new numbers to put in - what change to make in the score.
+	 * @param winner in what direction is the change going - black or white.
+	 */
 	void updateScore(int change, int winner);
+
+	/**
+	 * initials the score.
+	 * @param o the o score
+	 * @param x the x score
+	 */
 	void setScore(int o, int x);
+
+	/**
+	 * an array with 2 ints - both scores.
+	 */
 	int* score;
 };
 

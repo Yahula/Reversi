@@ -19,6 +19,9 @@ public:
 	 */
 	Console(int row=8, int col=8);
 
+    /**
+     * copy constructor
+     */
 	Console(Board* b);
 	/**
 	 * Desructor
