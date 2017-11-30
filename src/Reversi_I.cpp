@@ -4,19 +4,24 @@
 
 #include "../include/Reversi_I.h"
 
-Reversi_I::Reversi_I(){
-}
+Reversi_I::Reversi_I(){}
 
 Reversi_I::Reversi_I(GameRules* g) : GameRules(g) {}
 
-Reversi_I::~Reversi_I() {
-}
+Reversi_I::~Reversi_I() {}
+
 
 bool Reversi_I::play(Board *b, Disk *d) {
 	bool didHePlay = false;
-    if(b->getCell(d->getRow(),d->getCol())!=0){
-        return false;
+
+    if(d->getRow()>b->getRow()||d->getRow()<0||d->getCol()>b->getCol()||d->getCol()<0){
+        return didHePlay;
     }
+
+    if(b->getCell(d->getRow(),d->getCol())!=0){
+        return didHePlay;
+    }
+
 
     vector<int> v(8);
     lookAround(b,d,v);

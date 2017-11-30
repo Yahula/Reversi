@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.6.2)
 project(Reversi)
 
 #set(CMAKE_CXX_STANDATD 98 -Wall -Wextra)

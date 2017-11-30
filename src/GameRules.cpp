@@ -16,6 +16,7 @@ GameRules::GameRules(GameRules* g) {
 }
 
 GameRules::~GameRules() {
+
 }
 
 bool GameRules::isBoardFull(Board *b) {

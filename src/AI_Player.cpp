@@ -6,6 +6,7 @@
 #include "../include/GameRules.h"
 #include "../include/Console.h"
 #include <iostream>
+
 using namespace std;
 
 AI_Player::AI_Player(int pNum, GameRules* g, Board* b){
@@ -20,7 +21,7 @@ AI_Player::~AI_Player() {
 }
 
 Disk* AI_Player::move() {
-    int max = -100;
+    int max = min;
     int temp;
     Disk disk(-1, -1, pNum);
     for (int i = 0; i < board->getRow(); ++i) {
@@ -42,10 +43,10 @@ int AI_Player::check_one_place(Disk disk) {
     Reversi_I tempRules(this -> gameRules);
     bool played = tempRules.play(&tempBoard,&disk);
     if (!played){
-        return -100;
+        return min;
     }
 
-    int max = -100;
+    int max = min;
     Disk d(-1,-1,-pNum);
     for (int i = 0; i < tempBoard.getRow(); ++i) {
         for (int j = 0; j < tempBoard.getCol(); ++j) {
