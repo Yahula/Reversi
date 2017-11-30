@@ -52,12 +52,14 @@ public:
 	 */
 	bool isBoardFull(Board *b);
 
-	void updateScore(int change, int winner);
+
 
 	int* getScore();
 
 protected:
-	 int* score;
+	void updateScore(int change, int winner);
+	void setScore(int o, int x);
+	int* score;
 };
 
 #endif /* GAMERULES_H_ */

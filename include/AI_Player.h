@@ -31,7 +31,7 @@ private:
     GameRules* gameRules;
     Board* board;
     int check_one_place(Disk);
-    const int min = -100;
+    int min;
 
 };
 

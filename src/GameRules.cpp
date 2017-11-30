@@ -39,3 +39,8 @@ void GameRules::updateScore(int change, int winner){
 int *GameRules::getScore() {
 	return this->score;
 }
+
+void GameRules::setScore(int o, int x){
+	this->score[0] = o;
+	this->score[1] = x;
+}

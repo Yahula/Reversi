@@ -5,25 +5,10 @@
 #include "../include/Board.h"
 
 Board::Board(int row , int col) {
-
 	this->r=row;
 	this->c=col;
 
-	this->board = new int *[c];
-	for (int i=0; i<r; i++){
-		this->board[i] = new int[c];
-	}
-	for (int i=0; i<r; i++){
-		for (int j=0; j<c; j++){
-			this->board[i][j] = 0;
-		}
-	}
-
-	this->board[(r/2)-1][(c/2)-1] = 1;
-	this->board[(r/2)-1][c/2] = -1;
-	this->board[r/2][(c/2)-1] = -1;
-	this->board[r/2][c/2] = 1;
-
+	initialBoard();
 }
 
 Board::Board(Board* b) {
@@ -40,6 +25,22 @@ Board::Board(Board* b) {
     }
 }
 
+void Board::initialBoard(){
+	this->board = new int *[c];
+	for (int i=0; i<r; i++){
+		this->board[i] = new int[c];
+	}
+	for (int i=0; i<r; i++){
+		for (int j=0; j<c; j++){
+			this->board[i][j] = 0;
+		}
+	}
+
+	this->board[(r/2)-1][(c/2)-1] = 1;
+	this->board[(r/2)-1][c/2] = -1;
+	this->board[r/2][(c/2)-1] = -1;
+	this->board[r/2][c/2] = 1;
+}
 
 Board::~Board() {
 	delete this->board;
@@ -62,5 +63,7 @@ void Board::setCell(Disk* d) {
 	this->board[d->getRow()][d->getCol()] = d->getPlayer();
 //	delete d;
 }
+
+
 
 

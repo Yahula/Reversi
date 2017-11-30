@@ -31,6 +31,9 @@ public:
 	 */
 	virtual ~Board();
 
+	void initialBoard();
+
+
 	/**
 	 * DisplayBoard Method
 	 * each of the derived classes will implement a different way to display the board
@@ -67,6 +70,7 @@ public:
 
 
 protected:
+
 	/**
 	 * 2D matrix containing cells with values that represents the players disks on the board
 	 * -1 represents black player, 1 represent white player
