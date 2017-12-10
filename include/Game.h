@@ -10,6 +10,7 @@
 #include "Console.h"
 #include "Reversi_I.h"
 #include "AI_Player.h"
+#include "Client.h"
 
 
 /**
@@ -53,6 +54,7 @@ private:
 	 * The rules of the game
 	 */
 	GameRules *gameRules;
+
 };
 
 #endif /* GAME_H_ */
