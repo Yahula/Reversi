@@ -22,7 +22,7 @@ public:
 
 	/**
 	 * copy constructor.
-	 * @param d a disk to copy.
+	 * @param d a Disk to copy.
 	 */
 	Disk(Disk *d);
 
