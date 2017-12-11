@@ -10,6 +10,13 @@ Disk::Disk(int r, int c, int p) {
 	this->col = c;
 }
 
+Disk::Disk(Disk *d){
+	this->player = d->getPlayer();
+	this->row = d->getRow();
+	this->col = d->getCol();
+}
+
+
 Disk::~Disk() {
 
 }

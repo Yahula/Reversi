@@ -21,6 +21,12 @@ public:
 	Disk(int r, int c, int p);
 
 	/**
+	 * copy constructor.
+	 * @param d a Disk to copy.
+	 */
+	Disk(Disk *d);
+
+	/**
 	 * Distructor
 	 */
 	virtual ~Disk();
