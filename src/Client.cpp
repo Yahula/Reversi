@@ -12,15 +12,21 @@
 using namespace std;
 
 
-Client::Client(const char *serverIP, int serverPort, int num) : serverIP(serverIP), serverPort(serverPort), clientSocket(0)  {
+Client::Client(const char *serverIP, int serverPort) : serverIP(serverIP), serverPort(serverPort), clientSocket(0)  {
     try {
         connectToServer();
     } catch (const char *msg) {
         cout << "Failed to connect to server. Reason: " << msg << endl;
         exit(-1);
     }
-    this->pNum = num;
+    this->localPNum = 0;
+}
 
+Client::Client(Client* c) {
+    this->serverIP = c->getServerIP();
+    this->serverPort = c->getServerPort();
+    this->clientSocket = c->getClientSocket();
+    this->localPNum = c->getLocalPNum();
 }
 
 void Client::connectToServer(){
@@ -47,7 +53,7 @@ void Client::connectToServer(){
     memcpy((char *)&serverAddress.sin_addr.s_addr, (char *)server->h_addr, (size_t)(server->h_length));
     serverAddress.sin_port = htons(serverPort);
 
-    if (pNum ==0) {
+    if (this->localPNum == 0) {
         if (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) == -1) {
             throw "Error connecting to server";
         }
@@ -56,11 +62,16 @@ void Client::connectToServer(){
         int plNum;
         int r = read(clientSocket, &plNum, sizeof(plNum));
         cout << "Player Number: " << plNum << endl;
-        this->pNum = plNum;
 
+        if (plNum == 1) {
+            this->localPNum = -1;
+        } else{
+            this->localPNum = 1;
+        }
         char msg[100] = {'\0'};
         r = read(clientSocket, msg, 100);
         cout << msg << endl;
+        close(clientSocket);
     }
 
     else{
@@ -68,22 +79,45 @@ void Client::connectToServer(){
             throw "Error connecting to server";
         }
         cout << "Connected to server" << endl;
-        handleServer();
     }
-    close(clientSocket);
 }
 
-void Client::handleServer(){
+int Client::getLocalPNum() const {
+    return localPNum;
+}
+
+Disk* Client::readFromServer(){
     char move[3] = {'\0'};
     int r = read(clientSocket, move, 3);
     int row,col;
     row = move[0];
     col = move[2];
-    this->remoteMove = new Disk(row,col,this->pNum*(-1));
+    return new Disk(row,col,this->localPNum*-1);
+}
+
+void Client::writeToServer(Disk* d){
+    char arg[3];
+    arg[0] = (char)d->getRow();
+    arg[1] = ',';
+    arg[2] = (char)d->getCol();
+    int w = write(clientSocket,arg,3);
+    close(clientSocket);
+
 
 }
 
-Disk* Client::move() {
-    return NULL;
+const char *Client::getServerIP() const {
+    return serverIP;
 }
+
+int Client::getServerPort() const {
+    return serverPort;
+}
+
+int Client::getClientSocket() const {
+    return clientSocket;
+}
+
+
+
 

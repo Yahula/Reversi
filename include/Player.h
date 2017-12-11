@@ -34,11 +34,17 @@ public:
 	 */
 	int getpNum() const;
 
+	bool getIsRemote() const;
+
+	void setIsRemote(bool isRemote);
+
 protected:
 	/**
 	 * the player id
 	 */
 	int pNum;
+
+	bool isRemote;
 };
 
 #endif /* PLAYER_H_ */

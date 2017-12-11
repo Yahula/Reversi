@@ -10,15 +10,23 @@
 
 #endif //REVERSI_CLIENT_H
 
-class Client: public Player {
+class Client {
+
 public:
-    Client(const char *serverIP, int serverPort, int pNum);
+    Client(const char *serverIP, int serverPort);
+    Client(Client* c);
     void connectToServer();
-    void handleServer();
-    Disk* move();
+    Disk* readFromServer();
+    void writeToServer(Disk* d);
+
+    int getServerPort() const;
+    int getLocalPNum() const;
+    const char *getServerIP() const;
+    int getClientSocket() const;
+
 private:
     const char *serverIP;
     int serverPort;
     int clientSocket;
-    Disk* remoteMove;
+    int localPNum;
 };
