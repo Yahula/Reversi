@@ -10,7 +10,8 @@
 #include "Console.h"
 #include "Reversi_I.h"
 #include "AI_Player.h"
-#include "Client.h"
+#include "RemotePlayer.h"
+
 
 
 /**
@@ -55,6 +56,7 @@ private:
 	 */
 	GameRules *gameRules;
 
+	Client *client;
 };
 
 #endif /* GAME_H_ */

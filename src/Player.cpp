@@ -6,6 +6,15 @@
 
 Player::Player() {
 	pNum=0;
+	isRemote = false;
+}
+
+bool Player::getIsRemote() const {
+	return isRemote;
+}
+
+void Player::setIsRemote(bool isRemote) {
+	Player::isRemote = isRemote;
 }
 
 Player::~Player() {
