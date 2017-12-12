@@ -25,8 +25,8 @@ Game::Game(int player) {
 			this->playerW = new HumanPlayer(1);
 		}
 		else{
-			this->playerB = new HumanPlayer(1);
-			this->playerW = new RemotePlayer(this->client, -1);
+			this->playerB = new HumanPlayer(-1);
+			this->playerW = new RemotePlayer(this->client, 1);
 			this->playerW->setIsRemote(true);
 		}
 	}
