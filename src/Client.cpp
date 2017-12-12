@@ -13,13 +13,13 @@ using namespace std;
 
 
 Client::Client(const char *serverIP, int serverPort) : serverIP(serverIP), serverPort(serverPort), clientSocket(0)  {
+    this->localPNum = 0;
     try {
         connectToServer();
     } catch (const char *msg) {
         cout << "Failed to connect to server. Reason: " << msg << endl;
         exit(-1);
     }
-    this->localPNum = 0;
 }
 
 Client::Client(Client* c) {
@@ -102,8 +102,6 @@ void Client::writeToServer(Disk* d){
     arg[2] = (char)d->getCol();
     int w = write(clientSocket,arg,3);
     close(clientSocket);
-
-
 }
 
 const char *Client::getServerIP() const {
