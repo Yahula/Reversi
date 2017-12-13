@@ -73,24 +73,29 @@ void Game::playGame() {
 					cout<<"Game Over!"<<endl;
 					break;
 				}
+				if(!this->playerB->getIsRemote()) {
+					this->client->writeToServer(NULL);
+				}
 				flag=1;
 			}
 		}
 
 		if(gameRules->isBoardFull(myboard)){
 			cout<<"Board Full. Game Over!"<<endl;
+			client->writeToServer(NULL);
 			break;
 		}
 		else{
+
 			if(this->gameRules->canPlay(myboard,this->playerW)){
 				cout<<"White player (O) Choose location: Row Column"<<endl;
                 bool thereWasAMove;
 				d = new Disk(this->playerW->move());
-				thereWasAMove = this->gameRules->play(myboard,this->playerW->move());
+				thereWasAMove = this->gameRules->play(myboard,d);
                 while(!thereWasAMove){
                     cout<<"can't place there! try agian: " << endl;
 					d = new Disk(this->playerW->move());
-					thereWasAMove = this->gameRules->play(myboard,this->playerW->move());
+					thereWasAMove = this->gameRules->play(myboard,d);
                 }
 
 				if (!this->playerW->getIsRemote()){
@@ -108,8 +113,14 @@ void Game::playGame() {
 					cout << "Game Over!" << endl;
 					break;
 				}
+
+				if(!this->playerW->getIsRemote()) {
+					this->client->writeToServer(NULL);
+				}
 				flag = 1;
+
 			}
 		}
 	}
+
 }

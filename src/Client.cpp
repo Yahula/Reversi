@@ -53,33 +53,24 @@ void Client::connectToServer(){
     memcpy((char *)&serverAddress.sin_addr.s_addr, (char *)server->h_addr, (size_t)(server->h_length));
     serverAddress.sin_port = htons(serverPort);
 
-    if (this->localPNum == 0) {
-        if (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) == -1) {
-            throw "Error connecting to server";
-        }
-        cout << "Connected to server" << endl;
-
-        int plNum;
-        int r = read(clientSocket, &plNum, sizeof(plNum));
-        cout << "Player Number: " << plNum << endl;
-
-        if (plNum == 1) {
-            this->localPNum = -1;
-        } else{
-            this->localPNum = 1;
-        }
-        char msg[100] = {'\0'};
-        r = read(clientSocket, msg, 100);
-        cout << msg << endl;
-        close(clientSocket);
+    if (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) == -1) {
+        throw "Error connecting to server";
     }
+    cout << "Connected to server" << endl;
 
-    else{
-        if (connect(clientSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
-            throw "Error connecting to server";
-        }
-        cout << "Connected to server" << endl;
+    int plNum;
+    int r = read(clientSocket, &plNum, sizeof(plNum));
+    cout << "Player Number: " << plNum << endl;
+
+    if (plNum == 1) {
+        this->localPNum = -1;
+    } else{
+        this->localPNum = 1;
     }
+    char msg[100] = {'\0'};
+    r = read(clientSocket, msg, 100);
+    cout << msg << endl;
+
 }
 
 int Client::getLocalPNum() const {
@@ -89,19 +80,35 @@ int Client::getLocalPNum() const {
 Disk* Client::readFromServer(){
     char move[3] = {'\0'};
     int r = read(clientSocket, move, 3);
+    cout<<"I read: "<<move<<endl;
     int row,col;
-    row = move[0];
-    col = move[2];
+    row = (int)move[0];
+    col = (int)move[2];
     return new Disk(row,col,this->localPNum*-1);
 }
 
-void Client::writeToServer(Disk* d){
+void Client::writeToServer(Disk* d) {
     char arg[3];
-    arg[0] = (char)d->getRow();
-    arg[1] = ',';
-    arg[2] = (char)d->getCol();
-    int w = write(clientSocket,arg,3);
-    close(clientSocket);
+    int w;
+    if (d == NULL) {
+        arg[0] = 'E';
+        arg[1] = 'N';
+        arg[2] = 'D';
+        w = write(clientSocket, arg, 3);
+        if (w == -1) {
+            std::cout << "Error writing to server" << std::endl;
+            return;
+        }
+
+        arg[0] = (char) d->getRow();
+        arg[1] = ',';
+        arg[2] = (char) d->getCol();
+        w = write(clientSocket, arg, 3);
+        if (w == -1) {
+            std::cout << "Error writing to server" << std::endl;
+            return;
+        }
+    }
 }
 
 const char *Client::getServerIP() const {
