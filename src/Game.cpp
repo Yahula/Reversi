@@ -73,9 +73,9 @@ void Game::playGame() {
 					cout<<"Game Over!"<<endl;
 					break;
 				}
-				if(!this->playerB->getIsRemote()) {
-					this->client->writeToServer(NULL);
-				}
+//				if(!this->playerB->getIsRemote()) {
+//					this->client->writeToServer(NULL);
+//				}
 				flag=1;
 			}
 		}
@@ -114,9 +114,9 @@ void Game::playGame() {
 					break;
 				}
 
-				if(!this->playerW->getIsRemote()) {
-					this->client->writeToServer(NULL);
-				}
+//				if(!this->playerW->getIsRemote()) {
+//					this->client->writeToServer(NULL);
+//				}
 				flag = 1;
 
 			}
