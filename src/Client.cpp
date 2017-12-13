@@ -6,9 +6,11 @@
 #include <arpa/inet.h>
 #include "../include/Client.h"
 #include <iostream>
+#include <unistd.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <string.h>
+
 using namespace std;
 
 
@@ -99,15 +101,14 @@ void Client::writeToServer(Disk* d) {
             std::cout << "Error writing to server" << std::endl;
             return;
         }
-
-        arg[0] = (char) d->getRow();
-        arg[1] = ',';
-        arg[2] = (char) d->getCol();
-        w = write(clientSocket, arg, 3);
-        if (w == -1) {
-            std::cout << "Error writing to server" << std::endl;
-            return;
-        }
+    }
+    arg[0] = (char) d->getRow();
+    arg[1] = ',';
+    arg[2] = (char) d->getCol();
+    w = write(clientSocket, arg, 3);
+    if (w == -1) {
+        std::cout << "Error writing to server" << std::endl;
+        return;
     }
 }
 
