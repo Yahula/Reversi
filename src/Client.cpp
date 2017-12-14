@@ -124,6 +124,21 @@ int Client::getClientSocket() const {
     return clientSocket;
 }
 
+void Client::writeStringToServer(char* str) {
+    int w = write(clientSocket, str, sizeof(str));
+    if (w == -1) {
+        std::cout << "Error writing to server" << std::endl;
+        return;
+    }
+}
+
+char* Client::readStringFromServer(){
+    char msg[10] = {'\0'};
+    int r = read(clientSocket,msg, sizeof(msg));
+    return msg;
+}
+
+
 
 
 

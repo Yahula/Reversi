@@ -17,7 +17,9 @@ public:
     Client(Client* c);
     void connectToServer();
     Disk* readFromServer();
+    char* readStringFromServer();
     void writeToServer(Disk* d);
+    void writeStringToServer(char* srt);
 
     int getServerPort() const;
     int getLocalPNum() const;
