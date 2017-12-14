@@ -8,119 +8,123 @@ Game::Game(int player) {
 	this->myboard = new Console();
 	this->myboard->displayBoard();
 	this->gameRules = new Reversi_I();
+    this->endFlag = 0;
+    this->firstTurn = true;
 
-	if (player == 1) {
-		this->playerW = new AI_Player(1, this->gameRules, this->myboard);
-		this->playerB = new HumanPlayer(-1);
+    if (player == 1) {
+        this->isRemoteGame = false;
+        this->players.push_back(new HumanPlayer(-1));
+        this->players.push_back(new AI_Player(1, this->gameRules, this->myboard));
 	}
 	if (player == 2) {
-		this->playerW = new HumanPlayer(1);
-		this->playerB = new HumanPlayer(-1);
+        this->isRemoteGame = false;
+        this->players.push_back(new HumanPlayer(-1));
+        this->players.push_back(new HumanPlayer(1));
 	}
 	if (player == 3) {
+        this->isRemoteGame = true;
 		this->client = new Client("127.0.0.1", 5001);
 		if (this->client->getLocalPNum() == 1){
-			this->playerB = new RemotePlayer(this->client, -1);
-			this->playerB->setIsRemote(true);
-			this->playerW = new HumanPlayer(1);
+            this->players.push_back(new RemotePlayer(this->client, -1));
+			this->players[0]->setIsRemote(true);
+            this->players.push_back(new HumanPlayer(1));
 		}
 		else{
-			this->playerB = new HumanPlayer(-1);
-			this->playerW = new RemotePlayer(this->client, 1);
-			this->playerW->setIsRemote(true);
+            this->players.push_back(new HumanPlayer(-1));
+            this->players.push_back(new RemotePlayer(this->client, 1));
+            this->players[1]->setIsRemote(true);
 		}
 	}
 
 }
 
 Game::~Game() {
-	delete playerW;
-	delete playerB;
 	delete myboard;
 	delete gameRules;
 }
 
 void Game::playGame() {
-	int flag = 0;
-	Disk *d;
-	while(true){
-		if(gameRules->isBoardFull(myboard)){
-			cout<<"Board Full. Game Over!"<<endl;
-			break;
-		}
-		else{
-			if(this->gameRules->canPlay(myboard,this->playerB)){
-				cout<<"Black player (X) Choose location: Row Column"<<endl;
-				bool thereWasAMove;
-				d = new Disk(this->playerB->move());
-				thereWasAMove = this->gameRules->play(myboard,d);
-				while(!thereWasAMove){
-					cout<<"oops! not there! try agian: " << endl;
-					d = new Disk(this->playerB->move());
-					thereWasAMove = this->gameRules->play(myboard,d);
-				}
-				if (!this->playerB->getIsRemote()){
-					this->client->writeToServer(d);
-				}
-				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
-				this->myboard->displayBoard();
-				flag = 0;
-			}
-			else{
+	int player = 0;
+    int noMoves = 0;
+	while(true) {
+        if (gameRules->isBoardFull(myboard)) {
+            cout << "Board Full. Game Over!" << endl;
+            break;
+        } else {
+            int n = playerPlay(this->players[player]);
+            player = (player+1)%2;
 
-				cout<<"Black has No moves!"<<endl;
-				if(flag==1){
-					cout<<"Game Over!"<<endl;
-					break;
-				}
-//				if(!this->playerB->getIsRemote()) {
-//					this->client->writeToServer(NULL);
-//				}
-				flag=1;
-			}
-		}
+            if (!n){
+                noMoves = 0;
+            } else{
+                noMoves++;
+                if(noMoves==1){
+                    continue;
+                }
+                if(noMoves==2 || n == 2){
+                    cout << "Game Over" << endl;
+                    if(isRemoteGame) {
+                        char m[] = "END";
+                        this->client->writeStringToServer(m);
+                    }else {
+                        break;
+                    }
 
-		if(gameRules->isBoardFull(myboard)){
-			cout<<"Board Full. Game Over!"<<endl;
-			client->writeToServer(NULL);
-			break;
-		}
-		else{
-
-			if(this->gameRules->canPlay(myboard,this->playerW)){
-				cout<<"White player (O) Choose location: Row Column"<<endl;
-                bool thereWasAMove;
-				d = new Disk(this->playerW->move());
-				thereWasAMove = this->gameRules->play(myboard,d);
-                while(!thereWasAMove){
-                    cout<<"can't place there! try agian: " << endl;
-					d = new Disk(this->playerW->move());
-					thereWasAMove = this->gameRules->play(myboard,d);
                 }
 
-				if (!this->playerW->getIsRemote()){
-					this->client->writeToServer(d);
-				}
+            }
 
-				cout<<endl<<"Score - "<<"White (O): "<<this->gameRules->getScore()[0]<<", Black (X): "<<this->gameRules->getScore()[1]<<endl<<endl;
+        }
+    }
+}
 
-				this->myboard->displayBoard();
-				flag=0;
-			}
-			else {
-				cout << "White has No moves!" << endl;
-				if (flag == 1) {
-					cout << "Game Over!" << endl;
-					break;
-				}
+int Game::playerPlay(Player* player) {
+    Disk *d;
+    if(this->firstTurn){
+        firstTurn = false;
+    }
+    else {
+        if (this->isRemoteGame) {
+            if (strcmp(this->client->readStringFromServer(), "END")) {
+                return 2;
+            }
+        }
+    }
 
-//				if(!this->playerW->getIsRemote()) {
-//					this->client->writeToServer(NULL);
-//				}
-				flag = 1;
-
-			}
-		}
-	}
-
+    if (this->gameRules->canPlay(myboard, player)) {
+        bool thereWasAMove;
+        d = new Disk(player->move());
+        if(player->getIsRemote()){
+            if(d->getCol()==0){
+                this->endFlag = 1;
+                return 0;
+            }
+        }
+        thereWasAMove = this->gameRules->play(myboard, d);
+        while (!thereWasAMove) {
+            cout << "oops! not there! try agian: " << endl;
+            d = new Disk(player->move());
+            thereWasAMove = this->gameRules->play(myboard, d);
+        }
+        if (this->isRemoteGame && !player->getIsRemote()) {
+            this->client->writeToServer(d);
+        }
+        cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "
+             << this->gameRules->getScore()[1] << endl << endl;
+        this->myboard->displayBoard();
+        this->endFlag = 0;
+        return 0;
+    } else {
+        if (this->isRemoteGame){
+            char m[] = "no moves";
+            this->client->writeStringToServer(m);
+            if(this->endFlag){
+                cout<<"Game Over!"<<endl;
+            }
+            return 0;
+        } else {
+            cout << "No moves!" << endl;
+            return 1;
+        }
+    }
 }

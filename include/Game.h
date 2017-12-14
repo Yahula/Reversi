@@ -11,6 +11,7 @@
 #include "Reversi_I.h"
 #include "AI_Player.h"
 #include "RemotePlayer.h"
+#include <vector>
 
 
 
@@ -35,17 +36,12 @@ public:
 	 */
 	void playGame();
 
+	int playerPlay(Player* player);
+
+
+    bool firstTurn;
+
 private:
-	/**
-	 * The white player - O
-	 */
-	Player *playerW;
-
-	/**
-	 * The black player - X
-	 */
-	Player *playerB;
-
 	/**
 	 * The game board
 	 */
@@ -57,6 +53,13 @@ private:
 	GameRules *gameRules;
 
 	Client *client;
+
+	vector <Player*> players;
+
+	bool isRemoteGame;
+
+    int endFlag;
+
 };
 
 #endif /* GAME_H_ */

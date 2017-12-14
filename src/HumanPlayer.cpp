@@ -16,6 +16,13 @@ HumanPlayer::~HumanPlayer() {
 
 Disk* HumanPlayer::move() {
 	int row, col;
+	if(this->pNum ==-1) {
+		cout << "Black player (X) Choose location: Row Column" << endl;
+	} else{
+		cout << "White player (O) Choose location: Row Column" << endl;
+
+	}
+
 	cin>>row>>col;
 
 	while (!cin >> row || !cin >> col) {
