@@ -80,32 +80,23 @@ int Client::getLocalPNum() const {
 }
 
 Disk* Client::readFromServer(){
-    char move[3] = {'\0'};
-    int r = read(clientSocket, move, 3);
-    cout<<"I read: "<<move<<endl;
-    int row,col;
-    row = (int)move[0];
-    col = (int)move[2];
+    char move[10] = {'\0'};
+    int row, col;
+
+    int r = read(clientSocket, move, 10);
+    row = (int) move[0];
+    col = (int) move[2];
+
     return new Disk(row,col,this->localPNum*-1);
 }
 
 void Client::writeToServer(Disk* d) {
-    char arg[3];
+    char arg[10] = {'\0'};
     int w;
-    if (d == NULL) {
-        arg[0] = 'E';
-        arg[1] = 'N';
-        arg[2] = 'D';
-        w = write(clientSocket, arg, 3);
-        if (w == -1) {
-            std::cout << "Error writing to server" << std::endl;
-            return;
-        }
-    }
-    arg[0] = (char) d->getRow();
+    arg[0] = d->getRow();
     arg[1] = ',';
-    arg[2] = (char) d->getCol();
-    w = write(clientSocket, arg, 3);
+    arg[2] = d->getCol();
+    w = write(clientSocket, arg, sizeof(arg));
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;
@@ -131,12 +122,12 @@ void Client::writeStringToServer(char* str) {
         return;
     }
 }
-
-char* Client::readStringFromServer(){
-    char msg[10] = {'\0'};
-    int r = read(clientSocket,msg, sizeof(msg));
-    return msg;
-}
+//
+//char* Client::readStringFromServer(){
+//    char msg[10] = {'\0'};
+//    int r = read(clientSocket,msg, sizeof(msg));
+//    return msg;
+//}
 
 
 
