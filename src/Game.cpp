@@ -8,7 +8,6 @@ Game::Game(int player) {
 	this->myboard = new Console();
 	this->myboard->displayBoard();
 	this->gameRules = new Reversi_I();
-    this->endFlag = 0;
     this->firstTurn = true;
 
     if (player == 1) {
@@ -44,62 +43,43 @@ Game::~Game() {
 }
 
 void Game::playGame() {
-	int player = 0;
+    int player = 0;
     int noMoves = 0;
-	while(true) {
+    while (true) {
         if (gameRules->isBoardFull(myboard)) {
             cout << "Board Full. Game Over!" << endl;
             break;
         } else {
             int n = playerPlay(this->players[player]);
-            player = (player+1)%2;
+            player = (player + 1) % 2;
 
-            if (!n){
+            if (!n) {
                 noMoves = 0;
-            } else{
+            } else {
                 noMoves++;
-                if(noMoves==1){
+                if (noMoves == 1) {
                     continue;
                 }
-                if(noMoves==2 || n == 2){
+                if (noMoves == 2) {
                     cout << "Game Over" << endl;
-                    if(isRemoteGame) {
-                        char m[] = "END";
-                        this->client->writeStringToServer(m);
-                    }else {
-                        break;
-                    }
-
+                    break;
                 }
 
             }
 
         }
+
     }
 }
 
 int Game::playerPlay(Player* player) {
     Disk *d;
-    if(this->firstTurn){
-        firstTurn = false;
-    }
-    else {
-        if (this->isRemoteGame) {
-            if (strcmp(this->client->readStringFromServer(), "END")) {
-                return 2;
-            }
-        }
-    }
 
     if (this->gameRules->canPlay(myboard, player)) {
         bool thereWasAMove;
+
         d = new Disk(player->move());
-        if(player->getIsRemote()){
-            if(d->getCol()==0){
-                this->endFlag = 1;
-                return 0;
-            }
-        }
+
         thereWasAMove = this->gameRules->play(myboard, d);
         while (!thereWasAMove) {
             cout << "oops! not there! try agian: " << endl;
@@ -112,16 +92,17 @@ int Game::playerPlay(Player* player) {
         cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "
              << this->gameRules->getScore()[1] << endl << endl;
         this->myboard->displayBoard();
-        this->endFlag = 0;
         return 0;
     } else {
         if (this->isRemoteGame){
-            char m[] = "no moves";
-            this->client->writeStringToServer(m);
-            if(this->endFlag){
-                cout<<"Game Over!"<<endl;
+            if(!player->getIsRemote()) {
+                char m[] = "nmv";
+                this->client->writeStringToServer(m);
+            }else{
+                this->client->readFromServer();
             }
             return 0;
+
         } else {
             cout << "No moves!" << endl;
             return 1;
