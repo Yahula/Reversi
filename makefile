@@ -15,9 +15,7 @@ core.o:
 	$(CXX) $(CXXFLAGS) -c @sources.txt
 
 makeO:
-	find -name "*.o" > compile.txt
-	sed -i '/cmake-build-debug/d' ./compile.txt
-
+	find ./ -name "*.o" > compile.txt
 clean:
 	$(RM) *.o
 	$(RM) sources.txt
