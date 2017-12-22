@@ -70,7 +70,7 @@ void Client::connectToServer(){
         this->localPNum = 1;
     }
     char msg[100] = {'\0'};
-    r = read(clientSocket, msg, 100);
+    r = read(clientSocket, msg, sizeof(msg)/ sizeof(char));
     cout << msg << endl;
 
 }
@@ -83,11 +83,11 @@ Disk* Client::readFromServer(){
     char move[10] = {'\0'};
     int row, col;
 
-    int r = read(clientSocket, move, 10);
+    int r = read(clientSocket, move, sizeof(move)/ sizeof(char));
     row = (int) move[0];
     col = (int) move[2];
 
-    return new Disk(row,col,this->localPNum*-1);
+    return new Disk(row,col,-this->localPNum);
 }
 
 void Client::writeToServer(Disk* d) {
@@ -96,11 +96,15 @@ void Client::writeToServer(Disk* d) {
     arg[0] = d->getRow();
     arg[1] = ',';
     arg[2] = d->getCol();
-    w = write(clientSocket, arg, sizeof(arg));
+
+    delete(d);
+
+    w = write(clientSocket, arg, sizeof(arg)/ sizeof(char));
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;
     }
+
 }
 
 const char *Client::getServerIP() const {
@@ -116,7 +120,7 @@ int Client::getClientSocket() const {
 }
 
 void Client::writeStringToServer(char* str) {
-    int w = write(clientSocket, str, sizeof(str));
+    int w = write(clientSocket, str, sizeof(str)/ sizeof(char));
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;

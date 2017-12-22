@@ -38,8 +38,13 @@ Game::Game(int player) {
 }
 
 Game::~Game() {
-	delete myboard;
-	delete gameRules;
+	delete (myboard);
+	delete (gameRules);
+    delete (players[0]);
+    delete (players[1]);
+    if(isRemoteGame){
+        delete(client);
+    }
 }
 
 void Game::playGame() {
@@ -108,4 +113,5 @@ int Game::playerPlay(Player* player) {
             return 1;
         }
     }
+    delete (d);
 }

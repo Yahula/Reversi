@@ -12,6 +12,7 @@ RemotePlayer::RemotePlayer(Client* c, int num) {
 
 
 RemotePlayer::~RemotePlayer() {
+    delete (client);
 }
 
 Disk* RemotePlayer::move() {
