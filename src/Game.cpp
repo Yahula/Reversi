@@ -9,6 +9,7 @@ Game::Game(int player) {
 	this->myboard->displayBoard();
 	this->gameRules = new Reversi_I();
     this->firstTurn = true;
+    this->endFlag = 0;
 
     if (player == 1) {
         this->isRemoteGame = false;
@@ -58,9 +59,9 @@ void Game::playGame() {
             int n = playerPlay(this->players[player]);
             player = (player + 1) % 2;
 
-            if (!n) {
+            if (n==0) {
                 noMoves = 0;
-            } else {
+            } else if (n==1) {
                 noMoves++;
                 if (noMoves == 1) {
                     continue;
@@ -70,10 +71,11 @@ void Game::playGame() {
                     break;
                 }
 
+            } else if(n==2){
+                this->client->readFromServer();
+                return;
             }
-
         }
-
     }
 }
 
@@ -97,12 +99,17 @@ int Game::playerPlay(Player* player) {
         cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "
              << this->gameRules->getScore()[1] << endl << endl;
         this->myboard->displayBoard();
+        this->endFlag = 0;
         return 0;
     } else {
         if (this->isRemoteGame){
+            if(endFlag){
+                return 2;
+            }
             if(!player->getIsRemote()) {
                 char m[] = "nmv";
                 this->client->writeStringToServer(m);
+                this->endFlag = 1;
             }else{
                 this->client->readFromServer();
             }
