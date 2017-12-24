@@ -2,7 +2,7 @@
 // Created by Yahel Ben ishay on 11/28/17.
 //
 
-#include "../gtest_src/googletest-release-1.8.0/googletest/include/gtest/gtest.h"
+#include "../gtest_src/gtest/gtest.h"
 #include "../include/Reversi_I.h"
 #include "../include/Console.h"
 #include "../include/AI_Player.h"
@@ -12,7 +12,7 @@ public:
     AI_test() {
         b = new Console();
         g = new Reversi_I();
-        p = new AI_Player();
+        p = new AI_Player(1,g,b);
     }
 
 protected:
@@ -23,7 +23,7 @@ protected:
         cout << "Tearing down" << endl;
     }
     Board* b;
-    GameRulaes* g;
+    GameRules* g;
     Player* p;
 };
 
@@ -32,7 +32,7 @@ protected:
  * Move function tests
  */
 
-TEST_F(GameRules_test, regualarCheck)  {
+TEST_F(AI_test, regualarCheck)  {
     b->setCell(new Disk(4,4,0));
     b->setCell(new Disk(5,5,-1));
     b->setCell(new Disk(5,6,-1));
