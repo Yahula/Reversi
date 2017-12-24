@@ -2,7 +2,7 @@
 // Created by Yahel Ben ishay on 11/28/17.
 //
 
-#include "../gtest_src/googletest-release-1.8.0/googletest/include/gtest/gtest.h"
+#include "../gtest_src/gtest/gtest.h"
 #include "../include/Reversi_I.h"
 #include "../include/Console.h"
 #include "../include/HumanPlayer.h"
@@ -10,14 +10,14 @@
 class GameRules_test: public testing::Test{
 public:
     GameRules_test() {
-        rules = new Reversi_I();
-        b = new Console();
-        p = new HumanPlayer(1);
     }
 
 protected:
     virtual void SetUp(){
         cout << "Setting up" << endl;
+        rules = new Reversi_I();
+        b = new Console();
+        p = new HumanPlayer(1);
     }
     virtual void TearDown(){
         cout << "Tearing down" << endl;
@@ -161,7 +161,7 @@ TEST_F(GameRules_test, IBF_fullBoard)  {
 
     for (int i=1; i<9; i++){
         for (int j=1; j<9; j++) {
-            b->setCell(new Disk(i,j,1))
+            b->setCell(new Disk(i,j,1));
         }
     }
     EXPECT_TRUE(rules->isBoardFull(b))<<"isBoardFull function is not good - full board";
