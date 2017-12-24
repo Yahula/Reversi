@@ -16,7 +16,7 @@ public:
     Client(const char *serverIP, int serverPort);
     Client(Client* c);
     void connectToServer();
-    Disk* readFromServer();
+    Disk readFromServer();
     char* readStringFromServer();
     void writeToServer(Disk* d);
     void writeStringToServer(char* srt);

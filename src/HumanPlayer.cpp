@@ -14,7 +14,7 @@ HumanPlayer::~HumanPlayer() {
 
 }
 
-Disk* HumanPlayer::move() {
+Disk HumanPlayer::move() {
 	int row, col;
 	if(this->pNum ==-1) {
 		cout << "Black player (X) Choose location: Row Column" << endl;
@@ -31,6 +31,11 @@ Disk* HumanPlayer::move() {
 	        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	    	cin>>row>>col;
 	    }
-	return new Disk(row-1,col-1,this->pNum);
+    Disk d;
+    d.setRow(row-1);
+    d.setCol(col-1);
+    d.setPlayer(pNum);
+
+	return d;
 }
 

@@ -5,6 +5,7 @@
 #include "../include/AI_Player.h"
 #include "../include/GameRules.h"
 #include "../include/Console.h"
+#include "../include/HumanPlayer.h"
 #include <iostream>
 
 using namespace std;
@@ -21,7 +22,7 @@ AI_Player::~AI_Player() {
 
 }
 
-Disk* AI_Player::move() {
+Disk AI_Player::move() {
     int max = min;
     int temp;
     Disk disk(-1, -1, pNum);
@@ -36,15 +37,20 @@ Disk* AI_Player::move() {
             }
         }
     }
-    return new Disk(disk.getRow(), disk.getCol(), disk.getPlayer());
+    return disk;
 }
 
 int AI_Player::check_one_place(Disk disk) {
     Console tempBoard(this->board);
     Reversi_I tempRules(this -> gameRules);
+    HumanPlayer temPlayer(-pNum);
+    int DoIt = 100;
     bool played = tempRules.play(&tempBoard,&disk);
     if (!played){
         return min;
+    }
+    if(!tempRules.canPlay(&tempBoard,&temPlayer)){
+        return DoIt;
     }
 
     int max = min;

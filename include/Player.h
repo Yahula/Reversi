@@ -27,7 +27,7 @@ public:
 	 * This method asks from the player it's desired move
 	 * @return Disk - the desired location and disk color back to the game manager
 	 */
-	virtual Disk* move() = 0;
+	virtual Disk move() = 0;
 
 	/**
 	 * @return pNum - the player id - -1 for black, 1 for white

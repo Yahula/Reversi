@@ -15,7 +15,7 @@ RemotePlayer::~RemotePlayer() {
     delete (client);
 }
 
-Disk* RemotePlayer::move() {
+Disk RemotePlayer::move() {
     return this->client->readFromServer();
 }
 
