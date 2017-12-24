@@ -27,6 +27,11 @@ public:
 	Disk(Disk *d);
 
 	/**
+	 * default constructor.
+	 */
+	Disk();
+
+	/**
 	 * Distructor
 	 */
 	virtual ~Disk();
@@ -57,6 +62,12 @@ public:
 	 * @param row - the new desired row location
 	 */
 	void setRow(int row);
+
+	/**
+	 * sets the player that placed the disk (the color of the disk).
+	 * @param p
+	 */
+	void setPlayer(int p);
 
 private:
 	/**

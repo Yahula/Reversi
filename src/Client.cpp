@@ -80,7 +80,7 @@ int Client::getLocalPNum() const {
     return localPNum;
 }
 
-Disk* Client::readFromServer(){
+Disk Client::readFromServer(){
     char move[10] = {'\0'};
     int row, col;
 
@@ -88,7 +88,12 @@ Disk* Client::readFromServer(){
     row = (int) move[0];
     col = (int) move[2];
 
-    return new Disk(row,col,-this->localPNum);
+    Disk d;
+    d.setRow(row);
+    d.setCol(col);
+    d.setPlayer(-localPNum);
+
+    return d;
 }
 
 void Client::writeToServer(Disk* d) {

@@ -4,6 +4,9 @@
 
 #include "../include/Disk.h"
 
+
+int defaultNum = -2;
+
 Disk::Disk(int r, int c, int p) {
 	this->player = p;
 	this->row = r;
@@ -14,6 +17,12 @@ Disk::Disk(Disk *d){
 	this->player = d->getPlayer();
 	this->row = d->getRow();
 	this->col = d->getCol();
+}
+
+Disk::Disk(){
+	player = defaultNum;
+	row = defaultNum;
+	col = defaultNum;
 }
 
 
@@ -40,4 +49,9 @@ void Disk::setCol(int col) {
 
 void Disk::setRow(int row) {
 	this->row = row;
+}
+
+
+void Disk::setPlayer(int p){
+	player = p;
 }

@@ -25,7 +25,7 @@ public:
      * This method tell the machine to make its move.
      * @return Disk - the chosen disk location and color to the game manager
      */
-    virtual Disk* move();
+    virtual Disk move();
 
 private:
     GameRules* gameRules;

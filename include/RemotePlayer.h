@@ -17,7 +17,7 @@ public:
 
     virtual ~RemotePlayer();
 
-    Disk* move();
+    Disk move();
 
 private:
     Client* client;

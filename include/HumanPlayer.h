@@ -30,7 +30,7 @@ public:
 	 * This method asks from the player to insert it's desired move
 	 * @return Disk - the chosen disk location and color to the game manager
 	 */
-	virtual Disk* move();
+	virtual Disk move();
 
 };
 
