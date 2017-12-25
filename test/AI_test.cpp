@@ -33,13 +33,41 @@ protected:
  */
 
 TEST_F(AI_test, regualarCheck)  {
-    b->setCell(new Disk(4,4,0));
-    b->setCell(new Disk(5,5,-1));
-    b->setCell(new Disk(5,6,-1));
-    b->setCell(new Disk(6,6,1));
-    b->setCell(new Disk(7,6,1));
+    Disk temp;
+
+    temp.setRow(3);
+    temp.setCol(3);
+    temp.setPlayer(0);
+    b->setCell(temp);
+
+    temp.setRow(4);
+    temp.setCol(4);
+    temp.setPlayer(-1);
+    b->setCell(temp);
+
+    temp.setRow(4);
+    temp.setCol(5);
+    temp.setPlayer(-1);
+    b->setCell(temp);
+
+    temp.setRow(5);
+    temp.setCol(5);
+    temp.setPlayer(1);
+    b->setCell(temp);
+
+    temp.setRow(6);
+    temp.setCol(5);
+    temp.setPlayer(1);
+    b->setCell(temp);
+
     g->setScore(2,4);
 
-    EXPECT_EQ(p->move(),new Disk (4,6,-1));
-    EXPECT_NE(p->move(),new Disk (4,4,-1));
+    Disk move(p->move());
+
+    EXPECT_EQ(move.getRow(),3);
+    EXPECT_EQ(move.getCol(),5);
+
+    EXPECT_NE(move.getCol(),3);
+    EXPECT_NE(move.getCol(),3);
+
 }

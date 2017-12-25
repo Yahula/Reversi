@@ -72,7 +72,7 @@ public:
 	 * sets the value in the requested cell
 	 * @param d - the disk containing the information of the cell (row,col,player)
 	 */
-	void setCell(Disk *d);
+	void setCell(Disk d);
 
 
 
