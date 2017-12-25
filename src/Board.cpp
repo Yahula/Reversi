@@ -36,6 +36,7 @@ void Board::initialBoard(){
 		}
 	}
 
+
 	this->board[(r/2)-1][(c/2)-1] = 1;
 	this->board[(r/2)-1][c/2] = -1;
 	this->board[r/2][(c/2)-1] = -1;

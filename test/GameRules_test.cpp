@@ -64,6 +64,7 @@ TEST_F(GameRules_test, CP_XOnlyOnBoard)  {
     //change O default places to X
     b->setCell(new Disk(4,4,-1));
     b->setCell(new Disk(5,5,-1));
+    b->displayBoard();
     EXPECT_FALSE(rules->canPlay(b,p))<<"canPlay function is not good";
 
 }
