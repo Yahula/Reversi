@@ -60,8 +60,8 @@ int Board::getCell(int r, int c) const {
 	return this->board[r][c];
 }
 
-void Board::setCell(Disk* d) {
-	this->board[d->getRow()][d->getCol()] = d->getPlayer();
+void Board::setCell(Disk d) {
+	this->board[d.getRow()][d.getCol()] = d.getPlayer();
 //	delete d;
 }
 

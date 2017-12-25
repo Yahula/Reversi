@@ -26,6 +26,30 @@ protected:
         delete rules;
     }
 
+    void emptyBoard(){
+        Disk temp;
+
+        //empty the board
+        temp.setRow(3);
+        temp.setCol(3);
+        temp.setPlayer(0);
+        b->setCell(temp);
+
+        temp.setRow(4);
+        temp.setCol(4);
+        temp.setPlayer(0);
+        b->setCell(temp);
+
+        temp.setRow(3);
+        temp.setCol(4);
+        temp.setPlayer(0);
+        b->setCell(temp);
+
+        temp.setRow(4);
+        temp.setCol(3);
+        temp.setPlayer(0);
+        b->setCell(temp);
+    }
     GameRules *rules;
     Board *b;
     Player *p;
@@ -41,48 +65,62 @@ TEST_F(GameRules_test, CP_regularBoard)  {
     EXPECT_TRUE(rules->canPlay(b,p))<<"canPlay function is not good";
 }
 
-TEST_F(GameRules_test, CP_oneMoves)  {
+TEST_F(GameRules_test, CP_oneMove)  {
     b->initialBoard();
-    //empty the board
-    b->setCell(new Disk(4,4,0));
-    b->setCell(new Disk(5,5,0));
-    b->setCell(new Disk(4,5,0));
-    b->setCell(new Disk(5,4,0));
+    Disk temp;
+
+    emptyBoard();
 
     //O on top
-    b->setCell(new Disk(1,2,1));
+    temp.setRow(0);
+    temp.setCol(1);
+    temp.setPlayer(1);
+    b->setCell(temp);
 
     //X underneath O
-    b->setCell(new Disk(2,2,-1));
+    temp.setRow(1);
+    temp.setCol(1);
+    temp.setPlayer(-1);
+    b->setCell(temp);
 
     EXPECT_TRUE(rules->canPlay(b,p))<<"can play is not good";
 }
 
 TEST_F(GameRules_test, CP_XOnlyOnBoard)  {
     b->initialBoard();
+    Disk temp;
 
     //change O default places to X
-    b->setCell(new Disk(4,4,-1));
-    b->setCell(new Disk(5,5,-1));
-    b->displayBoard();
+    temp.setRow(3);
+    temp.setCol(3);
+    temp.setPlayer(-1);
+    b->setCell(temp);
+
+    temp.setRow(4);
+    temp.setCol(4);
+    temp.setPlayer(-1);
+    b->setCell(temp);
     EXPECT_FALSE(rules->canPlay(b,p))<<"canPlay function is not good";
 
 }
 
 TEST_F(GameRules_test, CP_noMoves)  {
     b->initialBoard();
+    Disk temp;
 
-    //empty the board
-    b->setCell(new Disk(4,4,0));
-    b->setCell(new Disk(5,5,0));
-    b->setCell(new Disk(4,5,0));
-    b->setCell(new Disk(5,4,0));
+    emptyBoard();
 
     //X on top
-    b->setCell(new Disk(1,2,-1));
+    temp.setRow(0);
+    temp.setCol(1);
+    temp.setPlayer(-1);
+    b->setCell(temp);
 
     //O underneath X
-    b->setCell(new Disk(2,2,1));
+    temp.setRow(1);
+    temp.setCol(1);
+    temp.setPlayer(1);
+    b->setCell(temp);
 
     EXPECT_FALSE(rules->canPlay(b,p))<<"can play is not good";
 }
@@ -90,11 +128,8 @@ TEST_F(GameRules_test, CP_noMoves)  {
 TEST_F(GameRules_test, CP_emptyBoard)  {
     b->initialBoard();
 
-    //empty the board
-    b->setCell(new Disk(4,4,0));
-    b->setCell(new Disk(5,5,0));
-    b->setCell(new Disk(4,5,0));
-    b->setCell(new Disk(5,4,0));
+    emptyBoard();
+
     EXPECT_FALSE(rules->canPlay(b,p))<<"canPlay function is not good";
 
 }
@@ -106,31 +141,35 @@ TEST_F(GameRules_test, CP_emptyBoard)  {
 //on all tests below O player attampts to play
 TEST_F(GameRules_test, P_regularBoard)  {
     b->initialBoard();
-    EXPECT_TRUE(rules->play(b,new Disk(6,4,1)))<<"Play function is not good - regular check";
+
+    EXPECT_TRUE(rules->play(b,new Disk(5,3,1)))<<"Play function is not good - regular check";
 }
 
 TEST_F(GameRules_test, P_oneMoves)  {
     b->initialBoard();
+    Disk temp;
 
-    //empty the board
-    b->setCell(new Disk(4,4,0));
-    b->setCell(new Disk(5,5,0));
-    b->setCell(new Disk(4,5,0));
-    b->setCell(new Disk(5,4,0));
+    emptyBoard();
 
     //O on top
-    b->setCell(new Disk(1,2,1));
+    temp.setRow(0);
+    temp.setCol(1);
+    temp.setPlayer(1);
+    b->setCell(temp);
 
     //X underneath O
-    b->setCell(new Disk(2,2,-1));
+    temp.setRow(1);
+    temp.setCol(1);
+    temp.setPlayer(-1);
+    b->setCell(temp);
 
-    EXPECT_TRUE(rules->play(b,new Disk(2,3,1)))<<"Play function is not good - one move check";
+    EXPECT_TRUE(rules->play(b,new Disk(2,1,1)))<<"Play function is not good - one move check";
 }
 
 TEST_F(GameRules_test, P_nonValidMove)  {
     b->initialBoard();
 
-    EXPECT_FALSE(rules->play(b,new Disk(6,5,1)))<<"Play function is not good - non valid test";
+    EXPECT_FALSE(rules->play(b,new Disk(5,4,1)))<<"Play function is not good - non valid test";
 
 }
 
@@ -143,7 +182,7 @@ TEST_F(GameRules_test, P_emptyAreaMove)  {
 TEST_F(GameRules_test, P_takenPos)  {
     b->initialBoard();
 
-    EXPECT_FALSE(rules->play(b,new Disk(5,4,1)))<<" Play function is not good - place already taken";
+    EXPECT_FALSE(rules->play(b,new Disk(4,3,1)))<<" Play function is not good - place already taken";
 }
 
 /**
@@ -159,10 +198,14 @@ TEST_F(GameRules_test, IBF_regularBoard)  {
 
 TEST_F(GameRules_test, IBF_fullBoard)  {
     b->initialBoard();
+    Disk temp;
+    temp.setPlayer(1);
 
-    for (int i=1; i<9; i++){
-        for (int j=1; j<9; j++) {
-            b->setCell(new Disk(i,j,1));
+    for (int i=0; i<8; i++){
+        for (int j=0; j<8; j++) {
+            temp.setRow(i);
+            temp.setCol(j);
+            b->setCell(temp);
         }
     }
     EXPECT_TRUE(rules->isBoardFull(b))<<"isBoardFull function is not good - full board";

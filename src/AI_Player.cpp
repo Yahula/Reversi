@@ -59,7 +59,6 @@ int AI_Player::check_one_place(Disk disk) {
         for (int j = 0; j < tempBoard.getCol(); ++j) {
             d.setRow(i);
             d.setCol(j);
-//            todo check all scenrions - can he play? is the baord full?...
             if(tempRules.play(&tempBoard,&d)){
                 int temp = tempRules.getScore()[0]-tempRules.getScore()[1];
                 if(temp>max){
