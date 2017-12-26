@@ -28,9 +28,14 @@ public:
     virtual Disk move();
 
 private:
+    /**
+     * the rule if the game.
+     */
     GameRules* gameRules;
 
-    
+    /**
+     * the board of the current game
+     */
     Board* board;
 
     /**
