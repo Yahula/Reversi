@@ -9,7 +9,7 @@ include_directories(gtest_src/googletest-master/googletest/include)
 
 
 set(H_FILES include/Board.h include/Console.h include/Disk.h include/Game.h include/GameRules.h include/HumanPlayer.h include/Player.h include/Reversi_I.h include/AI_Player.h include/Client.h include/RemotePlayer.h)
-set(SOURCE_FILES src/Main.cpp src/Board.cpp  src/Console.cpp src/Disk.cpp src/Game.cpp src/GameRules.cpp src/HumanPlayer.cpp src/Player.cpp src/Reversi_I.cpp  src/AI_Player.cpp src/Client.cpp src/RemotePlayer.cpp)
+set(SOURCE_FILES src/Client/Main.cpp src/Client/Board.cpp src/Client/Console.cpp src/Client/Disk.cpp src/Client/Game.cpp src/Client/GameRules.cpp src/Client/HumanPlayer.cpp src/Client/Player.cpp src/Client/Reversi_I.cpp src/Client/AI_Player.cpp src/Client/Client.cpp src/Client/RemotePlayer.cpp)
 set(TEST_FILES test/GameRules_test.cpp test/AI_test.cpp test/gtestMain.cpp)
 
 add_executable(Reversi ${SOURCE_FILES} ${H_FILES})

@@ -17,7 +17,7 @@ public:
     Client(Client* c);
     void connectToServer();
     Disk readFromServer();
-    char* readStringFromServer();
+    void readStringFromServer();
     void writeToServer(Disk* d);
     void writeStringToServer(char* srt);
 
