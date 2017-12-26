@@ -9,7 +9,7 @@
 #ifndef REVERSI_REMOTEPLAYER_H
 #define REVERSI_REMOTEPLAYER_H
 
-#endif //REVERSI_REMOTEPLAYER_H
+
 
 class RemotePlayer: public Player {
 public:
@@ -22,3 +22,6 @@ public:
 private:
     Client* client;
 };
+
+
+#endif //REVERSI_REMOTEPLAYER_H

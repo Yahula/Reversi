@@ -34,8 +34,15 @@ public:
 	 */
 	int getpNum() const;
 
+	/**
+	 * @return the mode of the game. rather the game is played through a rever(remote) -true. or not - fals.
+	 */
 	bool getIsRemote() const;
 
+	/**
+	 * sets the game to be a remote game.
+	 * @param isRemote true if it is remote.
+	 */
 	void setIsRemote(bool isRemote);
 
 protected:
@@ -44,6 +51,9 @@ protected:
 	 */
 	int pNum;
 
+	/**
+	 * the mode of the game - remote = true/fals.
+	 */
 	bool isRemote;
 };
 
