@@ -2,7 +2,7 @@
  * Disk.cpp
  */
 
-#include "../include/Disk.h"
+#include "../../include/Disk.h"
 
 
 int defaultNum = -2;

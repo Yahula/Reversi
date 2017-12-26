@@ -2,7 +2,7 @@
  * HumanPlayer.cpp
  */
 
-#include "../include/HumanPlayer.h"
+#include "../../include/HumanPlayer.h"
 #include <iostream>
 using namespace std;
 
@@ -17,9 +17,9 @@ HumanPlayer::~HumanPlayer() {
 Disk HumanPlayer::move() {
 	int row, col;
 	if(this->pNum ==-1) {
-		cout << "Black player (X) Choose location: Row Column" << endl;
+		cout << "Black player (X) your turn! Choose location: Row Column" << endl;
 	} else{
-		cout << "White player (O) Choose location: Row Column" << endl;
+		cout << "White player (O) your turn! Choose location: Row Column" << endl;
 
 	}
 

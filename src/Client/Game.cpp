@@ -2,7 +2,9 @@
  * Game.cpp
  */
 
-#include "../include/Game.h"
+#include <fstream>
+#include <sstream>
+#include "../../include/Game.h"
 
 Game::Game(int player) {
 	this->myboard = new Console();
@@ -23,7 +25,16 @@ Game::Game(int player) {
 	}
 	if (player == 3) {
         this->isRemoteGame = true;
-		this->client = new Client("127.0.0.1", 5001);
+        ifstream cconfig;
+        cconfig.open("../../exe/client_config.txt");
+        string ip;
+        getline(cconfig, ip);
+        string port;
+        getline(cconfig, port);
+        istringstream is(port);
+        is>>port;
+
+        this->client = new Client("127.0.0.1", 5001);
 		if (this->client->getLocalPNum() == 1){
             this->players.push_back(new RemotePlayer(this->client, -1));
 			this->players[0]->setIsRemote(true);
@@ -93,7 +104,7 @@ int Game::playerPlay(Player* player) {
             d = new Disk(player->move());
             thereWasAMove = this->gameRules->play(myboard, d);
         }
-        if (this->isRemoteGame && !player->getIsRemote()) {
+        if (this->isRemoteGame &&!player->getIsRemote()) {
             this->client->writeToServer(d);
         }
         cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "

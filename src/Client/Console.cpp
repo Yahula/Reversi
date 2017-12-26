@@ -2,7 +2,7 @@
  * Console.cpp
  */
 
-#include "../include/Console.h"
+#include "../../include/Console.h"
 
 Console::Console(int r, int c) : Board(r,c){}
 

@@ -2,7 +2,8 @@
 // Created by Yahel Ben ishay on 12/11/17.
 //
 
-#include "../include/RemotePlayer.h"
+#include <iostream>
+#include "../../include/RemotePlayer.h"
 
 RemotePlayer::RemotePlayer(Client* c, int num) {
     this->client = new Client(c);
@@ -16,6 +17,7 @@ RemotePlayer::~RemotePlayer() {
 }
 
 Disk RemotePlayer::move() {
+    std::cout<<"Waiting for other player move..."<<std::endl;
     return this->client->readFromServer();
 }
 

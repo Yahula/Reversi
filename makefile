@@ -7,8 +7,8 @@ RM = rm -f
 #LIBS = -pthread -lboost_serialization -I.
 
 
-a.out: core.o makeO
-	$(CXX) $(CXXFLAGS) @compile.txt
+Reversi.out: core.o makeO
+	$(CXX) $(CXXFLAGS) @compile.txt exe
 
 core.o:
 	find src -name "*.cpp" > sources.txt

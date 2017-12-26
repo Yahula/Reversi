@@ -2,7 +2,7 @@
  * GameRules.cpp
  */
 
-#include "../include/GameRules.h"
+#include "../../include/GameRules.h"
 
 GameRules::GameRules() {
 	this->score = new int[2];

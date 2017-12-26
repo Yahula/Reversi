@@ -2,10 +2,9 @@
 // Created by Yahel Ben ishay on 11/28/17.
 //
 
-#include "../include/AI_Player.h"
-#include "../include/GameRules.h"
-#include "../include/Console.h"
-#include "../include/HumanPlayer.h"
+#include "../../include/AI_Player.h"
+#include "../../include/Console.h"
+#include "../../include/HumanPlayer.h"
 #include <iostream>
 
 using namespace std;

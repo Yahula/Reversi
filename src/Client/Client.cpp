@@ -4,12 +4,9 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include "../include/Client.h"
+#include "../../include/Client.h"
 #include <iostream>
-#include <unistd.h>
-#include <netinet/in.h>
 #include <netdb.h>
-#include <string.h>
 
 using namespace std;
 
@@ -132,12 +129,12 @@ void Client::writeStringToServer(char* str) {
         return;
     }
 }
-//
-//char* Client::readStringFromServer(){
-//    char msg[10] = {'\0'};
-//    int r = read(clientSocket,msg, sizeof(msg));
-//    return msg;
-//}
+
+void Client::readStringFromServer(){
+    char msg[10] = {'\0'};
+    int r = read(clientSocket,msg, sizeof(msg));
+    cout<<msg<<endl;
+}
 
 
 

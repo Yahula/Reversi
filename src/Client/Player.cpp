@@ -2,7 +2,7 @@
  * Player.cpp
  */
 
-#include "../include/Player.h"
+#include "../../include/Player.h"
 
 Player::Player() {
 	pNum=0;

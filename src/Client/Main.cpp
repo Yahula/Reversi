@@ -4,9 +4,9 @@
  * 305016297
  */
 
-#include "../include/Game.h"
+#include "../../include/Game.h"
 
-int gmain(){
+int main(){
 	int player;
 	cout<<"Welcome to Reversi! "<<endl<< "1 - Play against the computer"<<endl<<"2 - Play against another player"<<endl<<"3 - Play against a remote player"<<endl;
 

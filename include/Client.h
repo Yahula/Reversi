@@ -34,10 +34,12 @@ public:
      * @return the disk that presents the move.
      */
     Disk readFromServer();
-
+    
     /*
      * reads a string from the server.
      */
+    void readStringFromServer();
+   
     char* readStringFromServer();
 
     /**
