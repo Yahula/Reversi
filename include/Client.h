@@ -35,6 +35,11 @@ public:
      */
     Disk readFromServer();
 
+    /*
+     * reads a string from the server.
+     */
+    char* readStringFromServer();
+
     /**
      * writes a disk that was played by the local player to the server.
      * @param d the disk that was played.

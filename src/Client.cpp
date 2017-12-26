@@ -132,7 +132,12 @@ void Client::writeStringToServer(char* str) {
         return;
     }
 }
-
+//
+//char* Client::readStringFromServer(){
+//    char msg[10] = {'\0'};
+//    int r = read(clientSocket,msg, sizeof(msg));
+//    return msg;
+//}
 
 
 
