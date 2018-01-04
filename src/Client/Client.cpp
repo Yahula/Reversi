@@ -4,7 +4,7 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include "../../include/Client.h"
+#include "./include/Client.h"
 #include <iostream>
 #include <netdb.h>
 
@@ -58,18 +58,18 @@ void Client::connectToServer(){
     }
     cout << "Connected to server" << endl;
 
-    int plNum;
-    int r = read(clientSocket, &plNum, sizeof(plNum));
-    cout << "Player Number: " << plNum << endl;
-
-    if (plNum == 1) {
-        this->localPNum = -1;
-    } else{
-        this->localPNum = 1;
-    }
-    char msg[100] = {'\0'};
-    r = read(clientSocket, msg, sizeof(msg)/ sizeof(char));
-    cout << msg << endl;
+//    int plNum;
+//    int r = read(clientSocket, &plNum, sizeof(plNum));
+//    cout << "Player Number: " << plNum << endl;
+//
+//    if (plNum == 1) {
+//        this->localPNum = -1;
+//    } else{
+//        this->localPNum = 1;
+//    }
+//    char msg[100] = {'\0'};
+//    r = read(clientSocket, msg, sizeof(msg)/ sizeof(char));
+//    cout << msg << endl;
 
 }
 
