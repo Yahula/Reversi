@@ -2,7 +2,7 @@
  * Board.cpp
  */
 
-#include "../../include/Board.h"
+#include "./include/Board.h"
 
 Board::Board(int row , int col) {
 	this->r=row;

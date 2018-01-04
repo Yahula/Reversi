@@ -2,7 +2,7 @@
  * HumanPlayer.cpp
  */
 
-#include "../../include/HumanPlayer.h"
+#include "./include/HumanPlayer.h"
 #include <iostream>
 using namespace std;
 

@@ -2,7 +2,7 @@
  * Reversi_I.cpp
  */
 
-#include "../../include/Reversi_I.h"
+#include "./include/Reversi_I.h"
 
 Reversi_I::Reversi_I(){}
 

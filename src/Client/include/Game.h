@@ -49,6 +49,8 @@ public:
      */
     bool firstTurn;
 
+    void handleRemoteGame();
+
 private:
 	/**
 	 * The game board

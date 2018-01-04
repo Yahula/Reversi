@@ -39,8 +39,6 @@ public:
      * reads a string from the server.
      */
     void readStringFromServer();
-   
-    char* readStringFromServer();
 
     /**
      * writes a disk that was played by the local player to the server.
