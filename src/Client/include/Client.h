@@ -19,7 +19,7 @@ public:
     Disk readFromServer();
     void readStringFromServer();
     void writeToServer(Disk* d);
-    void writeStringToServer(char* srt);
+    void writeStringToServer(char* str);
 
     int getServerPort() const;
     int getLocalPNum() const;

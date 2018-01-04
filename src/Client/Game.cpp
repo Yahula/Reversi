@@ -4,47 +4,27 @@
 
 #include <fstream>
 #include <sstream>
-#include "../../include/Game.h"
+#include "./include/Game.h"
 
 Game::Game(int player) {
-	this->myboard = new Console();
-	this->myboard->displayBoard();
-	this->gameRules = new Reversi_I();
-    this->firstTurn = true;
-    this->endFlag = 0;
+	myboard = new Console();
+	myboard->displayBoard();
+	gameRules = new Reversi_I();
+    firstTurn = true;
+    endFlag = 0;
+    isRemoteGame = false;
 
     if (player == 1) {
-        this->isRemoteGame = false;
-        this->players.push_back(new HumanPlayer(-1));
-        this->players.push_back(new AI_Player(1, this->gameRules, this->myboard));
+        players.push_back(new HumanPlayer(-1));
+        players.push_back(new AI_Player(1, gameRules, myboard));
 	}
 	if (player == 2) {
-        this->isRemoteGame = false;
-        this->players.push_back(new HumanPlayer(-1));
-        this->players.push_back(new HumanPlayer(1));
+        players.push_back(new HumanPlayer(-1));
+        players.push_back(new HumanPlayer(1));
 	}
 	if (player == 3) {
-        this->isRemoteGame = true;
-        ifstream cconfig;
-        cconfig.open("../../exe/client_config.txt");
-        string ip;
-        getline(cconfig, ip);
-        string port;
-        getline(cconfig, port);
-        istringstream is(port);
-        is>>port;
-
-        this->client = new Client("127.0.0.1", 5001);
-		if (this->client->getLocalPNum() == 1){
-            this->players.push_back(new RemotePlayer(this->client, -1));
-			this->players[0]->setIsRemote(true);
-            this->players.push_back(new HumanPlayer(1));
-		}
-		else{
-            this->players.push_back(new HumanPlayer(-1));
-            this->players.push_back(new RemotePlayer(this->client, 1));
-            this->players[1]->setIsRemote(true);
-		}
+        isRemoteGame = true;
+        handleRemoteGame();
 	}
 
 }
@@ -132,4 +112,68 @@ int Game::playerPlay(Player* player) {
         }
     }
     delete (d);
+}
+
+void Game::handleRemoteGame() {
+    //read config from file
+    ifstream cconfig;
+    cconfig.open("../../exe/client_config.txt");
+    string ipnum;
+    getline(cconfig, ipnum);
+    char* ip = new char[ipnum.length()+1];
+    strcpy(ip,ipnum.c_str());
+
+    string p;
+    getline(cconfig, p);
+    int port;
+    istringstream(p) >> port ;
+
+    //get from server who's first
+    client = new Client(ip, port);
+    if (client->getLocalPNum() == 1){
+        players.push_back(new RemotePlayer(client, -1));
+        players[0]->setIsRemote(true);
+        players.push_back(new HumanPlayer(1));
+    }
+    else{
+        players.push_back(new HumanPlayer(-1));
+        players.push_back(new RemotePlayer(this->client, 1));
+        players[1]->setIsRemote(true);
+    }
+
+    //join or create a new game?
+    cout<<"Please select: "<<endl<<"1 - New Remote Game"<<endl<<"2 - Join an Existing Game"<<endl;
+    int type;
+    cin<<type;
+    if (type == 1){
+        string s1 = "start ";
+        string s2;
+
+        cout<<"Please type name of game: "<<endl;
+        cin>>s2;
+        string s3 = s1+s2;
+
+        char *command = new char[s3.length() + 1];
+        strcpy(command, s3.c_str());
+        client->writeStringToServer(command);
+
+        delete[] command;
+
+    }
+    if (type == 2){
+        client->writeStringToServer("list_games");
+        cout<<"Please select Game to Join: "<<endl;
+        client->readStringFromServer();
+
+        string s1 = "join ";
+        string s2;
+        cin>>s2;
+        string s3 = s1+s2;
+
+        char *command = new char[s3.length() + 1];
+        strcpy(command, s3.c_str());
+
+        client->writeStringToServer(command);
+        delete[] command;
+    }
 }

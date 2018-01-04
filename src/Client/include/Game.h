@@ -38,6 +38,7 @@ public:
 
 	int playerPlay(Player* player);
 
+	void handleRemoteGame();
 
     bool firstTurn;
 
