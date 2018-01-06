@@ -7,9 +7,11 @@
 #include "./include/Client.h"
 #include <iostream>
 #include <netdb.h>
+#include <unistd.h>
 
 using namespace std;
 
+#define MAX_MSG_LEN 100
 
 
 Client::Client(const char *serverIP, int serverPort) : serverIP(serverIP), serverPort(serverPort), clientSocket(0)  {
@@ -94,7 +96,7 @@ Disk Client::readFromServer(){
 }
 
 void Client::writeToServer(Disk* d) {
-    char arg[10] = {'\0'};
+    char arg[MAX_MSG_LEN] = {'\0'};
     int w;
     arg[0] = d->getRow();
     arg[1] = ',';
@@ -102,7 +104,7 @@ void Client::writeToServer(Disk* d) {
 
     delete(d);
 
-    w = write(clientSocket, arg, sizeof(arg)/ sizeof(char));
+    w = write(clientSocket, arg, strlen(arg));
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;
@@ -131,10 +133,15 @@ void Client::writeStringToServer(char* str) {
     }
 }
 
-void Client::readStringFromServer(){
-    char msg[10] = {'\0'};
-    int r = read(clientSocket,msg, sizeof(msg));
+char* Client::readStringFromServer(){
+    char msg[MAX_MSG_LEN] = {'\0'};
+    int r;
+    do{
+        r = read(clientSocket,msg, sizeof(msg));
+    } while(r==-1);
+
     cout<<msg<<endl;
+    return msg;
 }
 
 

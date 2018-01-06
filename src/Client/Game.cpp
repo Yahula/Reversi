@@ -156,15 +156,29 @@ void Game::handleRemoteGame() {
 
         char *command = new char[s3.length() + 1];
         strcpy(command, s3.c_str());
+
+        //write start command to server
         client->writeStringToServer(command);
 
         delete[] command;
 
+        //read "wait" message from server
+        client->readStringFromServer();
+
+        //read "OK GO" message from server
+        client->readStringFromServer();
+
     }
     if (type == 2){
         client->writeStringToServer("list_games");
-        cout<<"Please select Game to Join: "<<endl;
-        client->readStringFromServer();
+        cout<<"List of available games: "<<endl;
+
+        while(!strcmp(client->readStringFromServer(),"END_LIST")){
+            continue;
+        }
+
+        cout<<"Which game would you like to join? "<<endl;
+
 
         string s1 = "join ";
         string s2;
