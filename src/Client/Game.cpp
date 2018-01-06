@@ -8,7 +8,6 @@
 
 Game::Game(int player) {
 	myboard = new Console();
-	myboard->displayBoard();
 	gameRules = new Reversi_I();
     firstTurn = true;
     endFlag = 0;
@@ -42,6 +41,8 @@ Game::~Game() {
 void Game::playGame() {
     int player = 0;
     int noMoves = 0;
+    myboard->displayBoard();
+
     while (true) {
         if (gameRules->isBoardFull(myboard)) {
             cout << "Board Full. Game Over!" << endl;
