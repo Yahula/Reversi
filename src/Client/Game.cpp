@@ -130,7 +130,7 @@ void Game::handleRemoteGame() {
     istringstream(p) >> port ;
 
     //get from server who's first
-    client = new Client(ip, port);
+    client = new Client("127.0.0.1", 5001);
     if (client->getLocalPNum() == 1){
         players.push_back(new RemotePlayer(client, -1));
         players[0]->setIsRemote(true);
@@ -145,7 +145,7 @@ void Game::handleRemoteGame() {
     //join or create a new game?
     cout<<"Please select: "<<endl<<"1 - New Remote Game"<<endl<<"2 - Join an Existing Game"<<endl;
     int type;
-    cin<<type;
+    cin>>type;
     if (type == 1){
         string s1 = "start ";
         string s2;
