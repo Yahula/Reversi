@@ -123,7 +123,8 @@ int Client::getClientSocket() const {
 }
 
 void Client::writeStringToServer(char* str) {
-    int w = write(clientSocket, str, sizeof(str)/ sizeof(char));
+    int s = strlen(str);
+    int w = write(clientSocket, str, s);
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;
