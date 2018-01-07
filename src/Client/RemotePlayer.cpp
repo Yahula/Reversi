@@ -17,7 +17,6 @@ RemotePlayer::~RemotePlayer() {
 }
 
 Disk RemotePlayer::move() {
-    std::cout<<"Waiting for other player move..."<<std::endl;
     return this->client->readFromServer();
 }
 

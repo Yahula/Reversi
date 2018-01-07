@@ -192,5 +192,6 @@ void Game::handleRemoteGame() {
 
         client->writeStringToServer(command);
         delete[] command;
+        client->readStringFromServer();
     }
 }
