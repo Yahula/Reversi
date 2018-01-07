@@ -172,10 +172,12 @@ void Game::handleRemoteGame() {
     if (type == 2){
         client->writeStringToServer("list_games");
         cout<<"List of available games: "<<endl;
+        string temp;
+        do{
+            temp = client->readStringFromServer();
 
-        while(!strcmp(client->readStringFromServer(),"END_LIST")){
-            continue;
-        }
+        } while(temp!="END_LIST");
+
 
         cout<<"Which game would you like to join? "<<endl;
 
