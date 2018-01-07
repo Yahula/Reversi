@@ -8,10 +8,12 @@
 #include <iostream>
 #include <netdb.h>
 #include <unistd.h>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
-#define MAX_MSG_LEN 100
+#define MAX_MSG_LEN 200
 
 
 Client::Client(const char *serverIP, int serverPort) : serverIP(serverIP), serverPort(serverPort), clientSocket(0)  {
@@ -83,7 +85,7 @@ Disk Client::readFromServer(){
     char move[10] = {'\0'};
     int row, col;
 
-    int r = read(clientSocket, move, sizeof(move)/ sizeof(char));
+    int r = read(clientSocket, move, strlen(move));
     row = (int) move[0];
     col = (int) move[2];
 
@@ -98,9 +100,24 @@ Disk Client::readFromServer(){
 void Client::writeToServer(Disk* d) {
     char arg[MAX_MSG_LEN] = {'\0'};
     int w;
-    arg[0] = d->getRow();
-    arg[1] = ',';
-    arg[2] = d->getCol();
+
+    strcat(arg,"play ");
+
+    string row,col;
+    ostringstream convert;
+    convert << d->getRow();
+    row = convert.str();
+    const char* r = row.c_str();
+    strcat(arg, r);
+
+    strcat(arg, ",");
+
+    convert.str("");
+
+    convert << d->getCol();
+    col = convert.str();
+    const char *c = col.c_str();
+    strcat(arg, c);
 
     delete(d);
 
@@ -140,7 +157,18 @@ char* Client::readStringFromServer(){
         r = read(clientSocket,msg, MAX_MSG_LEN);
     } while(r==-1);
 
-    cout<<msg<<endl;
+    istringstream iss(msg);
+    vector<string> tokens;
+    copy(istream_iterator<string>(iss), istream_iterator<string>(),back_inserter(tokens));
+
+    if(!tokens.at(tokens.size()-1).compare("END_LIST")) {
+        for (int i = 0; i < tokens.size()-1; i++) {
+            cout << tokens[i] << endl;
+        }
+    } else{
+        cout<<msg<<endl;
+    }
+
     return msg;
 }
 
