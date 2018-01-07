@@ -137,7 +137,7 @@ char* Client::readStringFromServer(){
     char msg[MAX_MSG_LEN] = {'\0'};
     int r;
     do{
-        r = read(clientSocket,msg, sizeof(msg));
+        r = read(clientSocket,msg, MAX_MSG_LEN);
     } while(r==-1);
 
     cout<<msg<<endl;
