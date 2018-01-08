@@ -170,28 +170,21 @@ void Game::handleRemoteGame() {
 
     }
     if (type == 2){
-        client->writeStringToServer("list_games");
+        client->writeStringToServer("join");
         cout<<"List of available games: "<<endl;
-        string temp;
-        do{
-            temp = client->readStringFromServer();
 
-        } while(temp!="END_LIST");
-
+        client->readStringFromServer();
 
         cout<<"Which game would you like to join? "<<endl;
 
-
-        string s1 = "join ";
         string s2;
         cin>>s2;
-        string s3 = s1+s2;
 
-        char *command = new char[s3.length() + 1];
-        strcpy(command, s3.c_str());
+        char *gameName = new char[s2.length() + 1];
+        strcpy(gameName, s2.c_str());
 
-        client->writeStringToServer(command);
-        delete[] command;
+        client->writeStringToServer(gameName);
+        delete[] gameName;
         client->readStringFromServer();
     }
 }
