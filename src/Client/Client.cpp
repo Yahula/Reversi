@@ -119,13 +119,12 @@ void Client::writeToServer(Disk* d) {
     const char *c = col.c_str();
     strcat(arg, c);
 
-    delete(d);
-
     w = write(clientSocket, arg, strlen(arg));
     if (w == -1) {
         std::cout << "Error writing to server" << std::endl;
         return;
     }
+    delete(d);
 
 }
 
