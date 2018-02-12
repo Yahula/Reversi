@@ -6,6 +6,9 @@
 #include <sstream>
 #include "./include/Game.h"
 
+#define BLACK -1
+#define WHITE 1
+
 Game::Game(int player) {
 	myboard = new Console();
 	gameRules = new Reversi_I();
@@ -48,6 +51,7 @@ void Game::playGame() {
             cout << "Board Full. Game Over!" << endl;
             break;
         } else {
+
             int n = playerPlay(this->players[player]);
             player = (player + 1) % 2;
 
@@ -91,6 +95,10 @@ int Game::playerPlay(Player* player) {
         cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "
              << this->gameRules->getScore()[1] << endl << endl;
         this->myboard->displayBoard();
+
+        if (this->isRemoteGame &&!player->getIsRemote()) {
+            this->client->readStringFromServer();
+        }
         this->endFlag = 0;
         return 0;
     } else {
@@ -131,22 +139,19 @@ void Game::handleRemoteGame() {
 
     //get from server who's first
     client = new Client("127.0.0.1", 5001);
-    if (client->getLocalPNum() == 1){
-        players.push_back(new RemotePlayer(client, -1));
-        players[0]->setIsRemote(true);
-        players.push_back(new HumanPlayer(1));
-    }
-    else{
-        players.push_back(new HumanPlayer(-1));
-        players.push_back(new RemotePlayer(this->client, 1));
-        players[1]->setIsRemote(true);
-    }
+
 
     //join or create a new game?
     cout<<"Please select: "<<endl<<"1 - New Remote Game"<<endl<<"2 - Join an Existing Game"<<endl;
     int type;
     cin>>type;
     if (type == 1){
+        client->setLocalPNum(BLACK);
+
+        players.push_back(new HumanPlayer(BLACK));
+        players.push_back(new RemotePlayer(client, WHITE));
+        players[1]->setIsRemote(true);
+
         string s1 = "start ";
         string s2;
 
@@ -168,17 +173,40 @@ void Game::handleRemoteGame() {
         //read "OK GO" message from server
         client->readStringFromServer();
 
+
+
+
     }
     if (type == 2){
+        client->setLocalPNum(WHITE);
+        players.push_back(new RemotePlayer(client, BLACK));
+        players[0]->setIsRemote(true);
+        players.push_back(new HumanPlayer(WHITE));
+
         client->writeStringToServer("join");
         cout<<"List of available games: "<<endl;
 
-        client->readStringFromServer();
+        char* msg = client->readStringFromServer();
+//
+//        stringstream ss(msg);
+//        string to;
+
+
 
         cout<<"Which game would you like to join? "<<endl;
-
         string s2;
-        cin>>s2;
+//        bool temp = true;
+//        while(temp) {
+            cin >> s2;
+//            while(std::getline(ss,to,'\n')){
+//                if(s2==to){
+//                    temp=false;
+//                }
+//            }
+//            if(temp){
+//                cout<<"umm.... this was not an option try again por favor: " <<endl;
+//            }
+//        }
 
         char *gameName = new char[s2.length() + 1];
         strcpy(gameName, s2.c_str());
@@ -187,4 +215,23 @@ void Game::handleRemoteGame() {
         delete[] gameName;
         client->readStringFromServer();
     }
+    //setPlayersOrder();
 }
+
+//void Game::setPlayersOrder(){
+//    int plNum = client->readPlayerNumFromServer();
+//    cout << "Player Number: " << plNum << endl;
+//
+//
+//    //set the order of the players - rather this proses is the black or white
+//    if (plNum == 1){
+//        players.push_back(new RemotePlayer(client, -1));
+//        players[0]->setIsRemote(true);
+//        players.push_back(new HumanPlayer(1));
+//    }
+//    else{
+//        players.push_back(new HumanPlayer(-1));
+//        players.push_back(new RemotePlayer(this->client, 1));
+//        players[1]->setIsRemote(true);
+//    }
+//}

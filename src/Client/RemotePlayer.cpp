@@ -18,5 +18,6 @@ RemotePlayer::~RemotePlayer() {
 
 Disk RemotePlayer::move() {
     return this->client->readFromServer();
+
 }
 
