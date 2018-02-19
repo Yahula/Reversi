@@ -79,6 +79,12 @@ public:
      */
     int readPlayerNumFromServer();
 
+
+    /**
+    * the method to end it all! will write to the socket that the game is over.
+    */
+    void endGame();
+
 private:
     /**
      * the server's ip.

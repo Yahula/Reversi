@@ -6,11 +6,12 @@
 #include <sstream>
 #include "./include/Game.h"
 
+
 #define BLACK -1
 #define WHITE 1
 
 Game::Game(int player) {
-	myboard = new Console();
+	myboard = new Console(4 , 4);
 	gameRules = new Reversi_I();
     firstTurn = true;
     endFlag = 0;
@@ -49,6 +50,7 @@ void Game::playGame() {
     while (true) {
         if (gameRules->isBoardFull(myboard)) {
             cout << "Board Full. Game Over!" << endl;
+            client->endGame();
             break;
         } else {
 
@@ -64,6 +66,7 @@ void Game::playGame() {
                 }
                 if (noMoves == 2) {
                     cout << "Game Over" << endl;
+                    client->endGame();
                     break;
                 }
 

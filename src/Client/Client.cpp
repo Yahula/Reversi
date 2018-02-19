@@ -164,6 +164,16 @@ void Client::writeStringToServer(char* str) {
         return;
     }
 }
+void Client::endGame() {
+    char* end = "close";
+    int s = strlen(end);
+    int w = write(clientSocket, end, s);
+    if (w == -1) {
+        std::cout << "Error writing to server" << std::endl;
+        return;
+    }
+    close(clientSocket);
+}
 
 char* Client::readStringFromServer(){
     char msg[MAX_MSG_LEN] = {'\0'};
