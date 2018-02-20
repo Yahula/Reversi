@@ -54,6 +54,7 @@ bool Reversi_I::canPlay(Board *b,Player *p) {
 		}
 	}
 
+
 	return false;
 }
 

@@ -84,6 +84,12 @@ private:
      */
     int endFlag;
 
+    /**
+     * sets the order if the players - rather this process is the first to play or the second.
+     *
+    **/
+    void setPlayersOrder();
+
 };
 
 #endif /* GAME_H_ */

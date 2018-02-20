@@ -4,6 +4,8 @@
 
 #include "./include/HumanPlayer.h"
 #include <iostream>
+#include <limits>
+
 using namespace std;
 
 HumanPlayer::HumanPlayer(int pNum){

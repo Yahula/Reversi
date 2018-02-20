@@ -72,6 +72,19 @@ public:
      */
     int getClientSocket() const;
 
+
+    /**
+     * get the palyer's number.
+     * @return the number (1 or -1)
+     */
+    int readPlayerNumFromServer();
+
+
+    /**
+    * the method to end it all! will write to the socket that the game is over.
+    */
+    void endGame();
+
 private:
     /**
      * the server's ip.
@@ -92,6 +105,8 @@ private:
      * the players number.
      */
     int localPNum;
+public:
+    void setLocalPNum(int localPNum);
 };
 
 #endif //REVERSI_CLIENT_H
