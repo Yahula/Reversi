@@ -181,10 +181,20 @@ char* Client::readStringFromServer(){
     do{
         r = read(clientSocket,msg, MAX_MSG_LEN);
     } while(r==-1);
+    if(r==0){
+        cout<<"the server is down!" << endl;
+        close(clientSocket);
+        exit(0);
+    }
 
     istringstream iss(msg);
     vector<string> tokens;
     copy(istream_iterator<string>(iss), istream_iterator<string>(),back_inserter(tokens));
+
+//    if(!tokens.at(tokens.size()-1).compare("SEREVER_CLOSED")) {
+//        cout<<"the server is down!" << endl;
+//        close(clientSocket);
+//    }
 
     if(!tokens.at(tokens.size()-1).compare("END_LIST")) {
 

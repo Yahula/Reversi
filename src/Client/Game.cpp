@@ -190,26 +190,27 @@ void Game::handleRemoteGame() {
         cout<<"List of available games: "<<endl;
 
         char* msg = client->readStringFromServer();
-//
-//        stringstream ss(msg);
-//        string to;
 
-
+//        istringstream iss(msg);
+//        vector<string> tokens;
+//        copy(istream_iterator<string>(iss), istream_iterator<string>(),back_inserter(tokens));
 
         cout<<"Which game would you like to join? "<<endl;
         string s2;
+
 //        bool temp = true;
-//        while(temp) {
+//        do {
             cin >> s2;
-//            while(std::getline(ss,to,'\n')){
-//                if(s2==to){
-//                    temp=false;
+//            for (int i = 0; i < tokens.size(); i++) {
+//                if (!tokens.at(i).compare(s2)) {
+//                    temp = false;
+//                    break;
 //                }
 //            }
-//            if(temp){
-//                cout<<"umm.... this was not an option try again por favor: " <<endl;
+//            if(temp) {
+//                cout << "umm.... this was not an option try again por favor: " << endl;
 //            }
-//        }
+//        } while (temp);
 
         char *gameName = new char[s2.length() + 1];
         strcpy(gameName, s2.c_str());
