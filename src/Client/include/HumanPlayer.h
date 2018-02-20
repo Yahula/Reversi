@@ -1,9 +1,3 @@
-/*
- * HumanPlayer.h
- * Yahel Ben-Ishay
- * 305016297
- */
-
 #ifndef HUMANPLAYER_H_
 #define HUMANPLAYER_H_
 
@@ -12,25 +6,25 @@
 /**
  * The Human player class is derived from the Player class and represent a human player that input the desired moves
  */
-class HumanPlayer: public Player {
+class HumanPlayer : public Player {
 
 public:
-	/**
-	 * Constructor
-	 * @param pNum - the player "id" -1 for black, 1 for white
-	 */
-	HumanPlayer(int pNum);
+    /**
+     * Constructor
+     * @param pNum - the player "id" -1 for black, 1 for white
+     */
+    HumanPlayer(int pNum);
 
-	/**
-	 * Destructor
-	 */
-	virtual ~HumanPlayer();
+    /**
+     * Destructor
+     */
+    virtual ~HumanPlayer();
 
-	/**
-	 * This method asks from the player to insert it's desired move
-	 * @return Disk - the chosen disk location and color to the game manager
-	 */
-	virtual Disk move();
+    /**
+     * This method asks from the player to insert it's desired move
+     * @return Disk - the chosen disk location and color to the game manager
+     */
+    virtual Disk move();
 
 };
 

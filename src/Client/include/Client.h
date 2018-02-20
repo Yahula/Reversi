@@ -1,7 +1,3 @@
-//
-// Created by Yahel Ben ishay on 12/7/17.
-//
-
 #include "Disk.h"
 #include "Player.h"
 
@@ -22,7 +18,7 @@ public:
      * copy constructor.
      * @param c the client to copy.
      */
-    Client(Client* c);
+    Client(Client *c);
 
     /**
      * the method that connects to the server.
@@ -34,23 +30,23 @@ public:
      * @return the disk that presents the move.
      */
     Disk readFromServer();
-    
+
     /*
      * reads a string from the server.
      */
-    char* readStringFromServer();
+    char *readStringFromServer();
 
     /**
      * writes a disk that was played by the local player to the server.
      * @param d the disk that was played.
      */
-    void writeToServer(Disk* d);
+    void writeToServer(Disk *d);
 
     /**
      * writes a given string to the server.
      * @param srt the string to pass to the server.
      */
-    void writeStringToServer(char* srt);
+    void writeStringToServer(char *srt);
 
     /**
      * @return the server port.

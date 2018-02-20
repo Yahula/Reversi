@@ -1,18 +1,13 @@
-/*
- * Game.cpp
- */
+#define BLACK -1
+#define WHITE 1
 
 #include <fstream>
 #include <sstream>
 #include "./include/Game.h"
 
-
-#define BLACK -1
-#define WHITE 1
-
 Game::Game(int player) {
-	myboard = new Console(4 , 4);
-	gameRules = new Reversi_I();
+    myboard = new Console(4, 4);
+    gameRules = new Reversi_I();
     firstTurn = true;
     endFlag = 0;
     isRemoteGame = false;
@@ -20,25 +15,25 @@ Game::Game(int player) {
     if (player == 1) {
         players.push_back(new HumanPlayer(-1));
         players.push_back(new AI_Player(1, gameRules, myboard));
-	}
-	if (player == 2) {
+    }
+    if (player == 2) {
         players.push_back(new HumanPlayer(-1));
         players.push_back(new HumanPlayer(1));
-	}
-	if (player == 3) {
+    }
+    if (player == 3) {
         isRemoteGame = true;
         handleRemoteGame();
-	}
+    }
 
 }
 
 Game::~Game() {
-	delete (myboard);
-	delete (gameRules);
+    delete (myboard);
+    delete (gameRules);
     delete (players[0]);
     delete (players[1]);
-    if(isRemoteGame){
-        delete(client);
+    if (isRemoteGame) {
+        delete (client);
     }
 }
 
@@ -57,9 +52,9 @@ void Game::playGame() {
             int n = playerPlay(this->players[player]);
             player = (player + 1) % 2;
 
-            if (n==0) {
+            if (n == 0) {
                 noMoves = 0;
-            } else if (n==1) {
+            } else if (n == 1) {
                 noMoves++;
                 if (noMoves == 1) {
                     continue;
@@ -70,7 +65,7 @@ void Game::playGame() {
                     break;
                 }
 
-            } else if(n==2){
+            } else if (n == 2) {
                 this->client->readFromServer();
                 return;
             }
@@ -78,7 +73,7 @@ void Game::playGame() {
     }
 }
 
-int Game::playerPlay(Player* player) {
+int Game::playerPlay(Player *player) {
     Disk *d;
 
     if (this->gameRules->canPlay(myboard, player)) {
@@ -92,28 +87,28 @@ int Game::playerPlay(Player* player) {
             d = new Disk(player->move());
             thereWasAMove = this->gameRules->play(myboard, d);
         }
-        if (this->isRemoteGame &&!player->getIsRemote()) {
+        if (this->isRemoteGame && !player->getIsRemote()) {
             this->client->writeToServer(d);
         }
         cout << endl << "Score - " << "White (O): " << this->gameRules->getScore()[0] << ", Black (X): "
              << this->gameRules->getScore()[1] << endl << endl;
         this->myboard->displayBoard();
 
-        if (this->isRemoteGame &&!player->getIsRemote()) {
+        if (this->isRemoteGame && !player->getIsRemote()) {
             this->client->readStringFromServer();
         }
         this->endFlag = 0;
         return 0;
     } else {
-        if (this->isRemoteGame){
-            if(endFlag){
+        if (this->isRemoteGame) {
+            if (endFlag) {
                 return 2;
             }
-            if(!player->getIsRemote()) {
+            if (!player->getIsRemote()) {
                 char m[] = "nmv";
                 this->client->writeStringToServer(m);
                 this->endFlag = 1;
-            }else{
+            } else {
                 this->client->readFromServer();
             }
             return 0;
@@ -128,27 +123,30 @@ int Game::playerPlay(Player* player) {
 
 void Game::handleRemoteGame() {
     //read config from file
-    ifstream cconfig;
-    cconfig.open("../../exe/client_config.txt");
+    ifstream clientConfig;
+    clientConfig.open("../exe/client_config.txt");
     string ipnum;
-    getline(cconfig, ipnum);
-    char* ip = new char[ipnum.length()+1];
-    strcpy(ip,ipnum.c_str());
+
+    getline(clientConfig, ipnum);
+    char *ip = new char[ipnum.length() + 1];
+    strcpy(ip, ipnum.c_str());
 
     string p;
-    getline(cconfig, p);
+    getline(clientConfig, p);
     int port;
-    istringstream(p) >> port ;
+    istringstream(p) >> port;
 
     //get from server who's first
-    client = new Client("127.0.0.1", 5001);
+    client = new Client(ip, port);
 
 
     //join or create a new game?
-    cout<<"Please select: "<<endl<<"1 - New Remote Game"<<endl<<"2 - Join an Existing Game"<<endl;
+    cout << "Please select: " << endl <<
+         "1 - New Remote Game" << endl <<
+         "2 - Join an Existing Game" << endl;
     int type;
-    cin>>type;
-    if (type == 1){
+    cin >> type;
+    if (type == 1) {
         client->setLocalPNum(BLACK);
 
         players.push_back(new HumanPlayer(BLACK));
@@ -158,9 +156,9 @@ void Game::handleRemoteGame() {
         string s1 = "start ";
         string s2;
 
-        cout<<"Please type name of game: "<<endl;
-        cin>>s2;
-        string s3 = s1+s2;
+        cout << "Please type name of game: " << endl;
+        cin >> s2;
+        string s3 = s1 + s2;
 
         char *command = new char[s3.length() + 1];
         strcpy(command, s3.c_str());
@@ -176,41 +174,22 @@ void Game::handleRemoteGame() {
         //read "OK GO" message from server
         client->readStringFromServer();
 
-
-
-
     }
-    if (type == 2){
+    if (type == 2) {
         client->setLocalPNum(WHITE);
         players.push_back(new RemotePlayer(client, BLACK));
         players[0]->setIsRemote(true);
         players.push_back(new HumanPlayer(WHITE));
 
         client->writeStringToServer("join");
-        cout<<"List of available games: "<<endl;
+        cout << "List of available games: " << endl;
 
-        char* msg = client->readStringFromServer();
+        char *msg = client->readStringFromServer();
 
-//        istringstream iss(msg);
-//        vector<string> tokens;
-//        copy(istream_iterator<string>(iss), istream_iterator<string>(),back_inserter(tokens));
-
-        cout<<"Which game would you like to join? "<<endl;
+        cout << "Which game would you like to join? " << endl;
         string s2;
 
-//        bool temp = true;
-//        do {
-            cin >> s2;
-//            for (int i = 0; i < tokens.size(); i++) {
-//                if (!tokens.at(i).compare(s2)) {
-//                    temp = false;
-//                    break;
-//                }
-//            }
-//            if(temp) {
-//                cout << "umm.... this was not an option try again por favor: " << endl;
-//            }
-//        } while (temp);
+        cin >> s2;
 
         char *gameName = new char[s2.length() + 1];
         strcpy(gameName, s2.c_str());
@@ -219,23 +198,4 @@ void Game::handleRemoteGame() {
         delete[] gameName;
         client->readStringFromServer();
     }
-    //setPlayersOrder();
 }
-
-//void Game::setPlayersOrder(){
-//    int plNum = client->readPlayerNumFromServer();
-//    cout << "Player Number: " << plNum << endl;
-//
-//
-//    //set the order of the players - rather this proses is the black or white
-//    if (plNum == 1){
-//        players.push_back(new RemotePlayer(client, -1));
-//        players[0]->setIsRemote(true);
-//        players.push_back(new HumanPlayer(1));
-//    }
-//    else{
-//        players.push_back(new HumanPlayer(-1));
-//        players.push_back(new RemotePlayer(this->client, 1));
-//        players[1]->setIsRemote(true);
-//    }
-//}

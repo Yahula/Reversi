@@ -4,84 +4,59 @@
 
 #include "./include/Board.h"
 
-Board::Board(int row , int col) {
-	this->r=row;
-	this->c=col;
-
-	initialBoard();
+Board::Board(int row, int col) {
+    this->r = row;
+    this->c = col;
+    initialBoard();
 }
 
-Board::Board(Board* b) {
-    r=b->getRow();
-    c=b->getCol();
-	this->board = new int *[c];
-    for (int i=0; i<r; i++){
-		this->board[i] = new int[c];
+Board::Board(Board *b) {
+    r = b->getRow();
+    c = b->getCol();
+    this->board = new int *[c];
+    for (int i = 0; i < r; i++) {
+        this->board[i] = new int[c];
     }
-    for (int i=0; i<r; i++){
-        for (int j=0; j<c; j++){
-			this->board[i][j] = b->getCell(i,j);
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            this->board[i][j] = b->getCell(i, j);
         }
     }
 }
 
-void Board::initialBoard(){
-	this->board = new int *[c];
-	for (int i=0; i<r; i++){
-		this->board[i] = new int[c];
-	}
-	for (int i=0; i<r; i++){
-		for (int j=0; j<c; j++){
-			this->board[i][j] = 0;
-		}
-	}
-
-	this->board[0][0] = 1;
-	this->board[0][1] = -1;
-	this->board[0][2] = -1;
-	this->board[0][3] = 1;
-	this->board[1][0] = 1;
-	this->board[1][1] = -1;
-	this->board[1][2] = -1;
-	this->board[1][3] = 1;
-	this->board[2][0] = 1;
-	this->board[2][1] = -1;
-	this->board[2][2] = -1;
-	this->board[2][3] = 1;
-	this->board[3][0] = 1;
-	this->board[3][1] = -1;
-	this->board[3][2] = 1;
-
-
-//
-//	this->board[(r/2)-1][(c/2)-1] = 1;
-//	this->board[(r/2)-1][c/2] = -1;
-//	this->board[r/2][(c/2)-1] = -1;
-//	this->board[r/2][(c/2)] = 1;
+void Board::initialBoard() {
+    this->board = new int *[c];
+    for (int i = 0; i < r; i++) {
+        this->board[i] = new int[c];
+    }
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            this->board[i][j] = 0;
+        }
+    }
+    this->board[(r / 2) - 1][(c / 2) - 1] = 1;
+    this->board[(r / 2) - 1][c / 2] = -1;
+    this->board[r / 2][(c / 2) - 1] = -1;
+    this->board[r / 2][(c / 2)] = 1;
 }
 
 Board::~Board() {
-	delete this->board;
+    delete this->board;
 }
 
 int Board::getCol() const {
-	return c;
+    return c;
 }
 
 int Board::getRow() const {
-	return r;
+    return r;
 }
 
 
 int Board::getCell(int r, int c) const {
-	return this->board[r][c];
+    return this->board[r][c];
 }
 
 void Board::setCell(Disk d) {
-	this->board[d.getRow()][d.getCol()] = d.getPlayer();
-//	delete d;
+    this->board[d.getRow()][d.getCol()] = d.getPlayer();
 }
-
-
-
-
