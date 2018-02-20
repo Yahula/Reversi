@@ -1,20 +1,16 @@
-/*
- * Player.cpp
- */
-
 #include "./include/Player.h"
 
 Player::Player() {
-	pNum=0;
-	isRemote = false;
+    pNum = 0;
+    isRemote = false;
 }
 
 bool Player::getIsRemote() const {
-	return isRemote;
+    return isRemote;
 }
 
 void Player::setIsRemote(bool isRemote) {
-	Player::isRemote = isRemote;
+    Player::isRemote = isRemote;
 }
 
 Player::~Player() {
@@ -22,5 +18,5 @@ Player::~Player() {
 }
 
 int Player::getpNum() const {
-	return pNum;
+    return pNum;
 }

@@ -1,7 +1,3 @@
-//
-// Created by Yahel Ben ishay on 11/28/17.
-//
-
 #ifndef REVERSI_AI_PLAYER_H
 #define REVERSI_AI_PLAYER_H
 

@@ -1,0 +1,816 @@
+Yahel Ben Ishay 305016297 group 05
+Sagi Shaashua 302915806 group 03
+
+
+
+**************** git log ************************
+i Yahel$ git log
+commit b48b01eb33fe347b39835bef764cedb6f27a921e
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Jan 7 23:07:40 2018 +0200
+
+    play move OK
+    join threads not yet
+
+commit 201db3ebdd0039b734b2b851c4b6face1dbd152a
+Merge: d9f35ed fb40919
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Jan 7 19:11:08 2018 +0200
+commit b48b01eb33fe347b39835bef764cedb6f27a921e
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Jan 7 23:07:40 2018 +0200
+
+    play move OK
+    join threads not yet
+
+commit 201db3ebdd0039b734b2b851c4b6face1dbd152a
+Merge: d9f35ed fb40919
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Jan 7 19:11:08 2018 +0200
+
+    Merge branch 'master' of https://github.com/Yahula/Reversi into Yahel
+
+commit fb40919fcbdc824fd831ef9a4f3479994e0aa4e7
+Merge: 7e42e04 7a69924
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sun Jan 7 19:07:21 2018 +0200
+
+    Merge pull request #42 from Yahula/Sagi
+
+    list of games?...
+
+commit 7a6992400e3b968af651c12e15b848af5acf1c98
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Sun Jan 7 18:32:49 2018 +0200
+
+    list of games?...
+
+commit 7e42e042b17229a7d15879398ba8a83e55358197
+Merge: 48cdf85 fdf8264
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sun Jan 7 17:35:50 2018 +0200
+
+    Merge pull request #41 from Yahula/Yahel
+
+    join command sent to server
+
+commit d9f35ed73fd1fddf4778075a3d00f486ca67a0f0
+Merge: fdf8264 48cdf85
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Jan 7 00:03:22 2018 +0200
+
+    Merge branch 'master' of https://github.com/Yahula/Reversi into Yahel
+
+commit fdf8264cbfd4bf322ad838c2cbd8f79f95f30435
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sat Jan 6 23:52:39 2018 +0200
+
+    join command sent to server
+
+commit 48cdf853b57a9aff991561d113f86fc16f67599b
+Merge: f6a7b8a a2e086e
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sat Jan 6 22:11:49 2018 +0200
+
+    Merge pull request #40 from Yahula/Yahel
+
+    Yahel
+
+commit a2e086e758ad4991435a691b882f8c28f6974233
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sat Jan 6 22:09:23 2018 +0200
+
+    start command sent to server
+
+commit b516e8ee057c506927e9c921df616face613c12c
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sat Jan 6 19:40:03 2018 +0200
+
+    print board issue
+
+commit f6a7b8aa248ced1b13222204e81b8bca804d3b08
+Merge: 848d4a6 5d1cc64
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Jan 4 16:59:11 2018 +0200
+
+    Merge pull request #39 from Yahula/Yahel
+
+    order includes
+
+commit 5d1cc641df25452c4651c0847fd534c5e0fa53ac
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Jan 4 16:58:39 2018 +0200
+
+    order includes
+
+commit 848d4a621d76e823f6cf87fe8ed84deae9915345
+Merge: a2c10ea 4376c87
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Jan 4 16:48:30 2018 +0200
+
+    Merge pull request #38 from Yahula/Yahel
+
+    Yahel
+
+commit 4376c8797010107d126bfdb27e0adcfd85f0eaa9
+Merge: 0829e79 090f5ba
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Jan 4 16:47:55 2018 +0200
+
+    Merge remote-tracking branch 'origin/Yahel' into Yahel
+
+    # Conflicts:
+    #   src/Client/include/Client.h
+    #   src/Client/include/Game.h
+
+commit 0829e7973a7f5324f20ad718996347138ea192ca
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Jan 4 16:44:27 2018 +0200
+
+    multithreading
+
+commit a2c10ea2aa588c48621f4293f821ce1d62e60437
+Merge: 1412552 090f5ba
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Dec 26 23:15:21 2017 +0200
+
+    Merge pull request #37 from Yahula/Yahel
+
+    Yahel
+
+commit 090f5bac2c34857ff7cf61974a6d44ebd0494f45
+Merge: 3d83c05 1412552
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Dec 26 23:15:12 2017 +0200
+
+    Merge branch 'master' into Yahel
+
+commit 1412552c2bb26d7c8c7b4492f42d654d63eb2d68
+Merge: 265600b 72ff881
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Dec 26 23:13:36 2017 +0200
+
+    Merge pull request #36 from Yahula/Sagi
+
+    Sagi
+
+commit 3d83c05400005ffe51dbe0fc7b6e1ea25563afb2
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Dec 26 23:11:31 2017 +0200
+
+    Cout problam
+
+commit 72ff881b1c858edb3f947b1fda90f1d8ce897441
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Tue Dec 26 22:30:08 2017 +0200
+
+    comments
+
+commit 0c5ec1dfa713940a595a1d9d68ddfc545fae1039
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Tue Dec 26 22:23:41 2017 +0200
+
+    comments
+
+commit 3d5146fe2cddc026fc9cfbe443be345430f1902f
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Tue Dec 26 21:33:33 2017 +0200
+
+    comments
+
+commit 1aeb7a9f03955c8be93503f79ca69e2a1ed15400
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Dec 26 11:58:49 2017 +0200
+
+    try to arrange couts
+
+commit 265600bd4f89af23b9b0136da7c1d980145bf8fb
+Merge: 2c7510d e8d771d
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Dec 25 15:00:12 2017 +0200
+
+    Merge pull request #35 from Yahula/Yahel
+
+    Yahel
+
+commit e8d771d1aec1f882117f7e55aa88a5170ef37a99
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 25 14:59:31 2017 +0200
+
+    missing files
+
+commit 93be286d99630cf1dd8a4831275994f6733b75ec
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 25 14:58:26 2017 +0200
+
+    test passing only AI not
+
+commit 2c7510df3aecbe2f24934f1919b3c501a36d83a0
+Merge: 6b7ba81 43dfd73
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Dec 25 13:24:51 2017 +0200
+
+    Merge pull request #34 from Yahula/Yahel
+
+    tests ar working!!!
+
+commit 43dfd73c686f9d171308e6972d33dfd4e9204936
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 25 00:20:38 2017 +0200
+
+    tests ar working!!!
+
+commit 6b7ba816f11f1dbad15daf3428d09e06e875a430
+Merge: 3a9d2c3 ccc66ad
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Dec 25 00:10:46 2017 +0200
+
+    Merge pull request #33 from Yahula/Sagi
+
+    no NEW for DIsk return.
+
+commit ccc66ad081d11696fc9d1f92dfd3f1d66a4ff5cc
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Dec 25 00:09:03 2017 +0200
+    no NEW for DIsk return.
+
+commit ccc66ad081d11696fc9d1f92dfd3f1d66a4ff5cc
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Dec 25 00:09:03 2017 +0200
+
+    no NEW for DIsk return.
+    ai player fixed.
+
+commit 3a9d2c3b5dbbfdf222e0897b45bbbf3339547950
+Merge: fe4ded6 56ba4be
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sun Dec 24 23:20:02 2017 +0200
+
+    Merge pull request #32 from Yahula/Yahel
+
+    tests are working!!!
+
+commit 56ba4be268a91405ad8ec8c52c65e49b1c2942f3
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sun Dec 24 23:18:58 2017 +0200
+
+    tests ar working!!!
+
+commit fe4ded6e266192fd3b63c8ee0be29056a2861d07
+Merge: 6df7b36 7bfd3cc
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sat Dec 23 20:38:33 2017 +0200
+
+    Merge pull request #31 from Yahula/Yahel
+
+    Working!!!
+
+commit 7bfd3cc637d5478106e7f8dbd8132601946222df
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sat Dec 23 20:37:54 2017 +0200
+
+    Working!!!
+
+commit 6df7b368a0fe1907022eb6c72877821787d1934a
+Merge: d874506 fa87a98
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Fri Dec 22 12:02:07 2017 +0200
+
+    Merge pull request #30 from Yahula/Yahel
+
+    update
+
+commit fa87a98ca8754a6d4231ab1035f829cb62bea201
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Fri Dec 22 12:01:34 2017 +0200
+
+    update
+
+commit d87450669fbae6b7a30ba4686e3985c657ba44af
+Merge: 90abcf7 b16d9f6
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Fri Dec 22 12:00:36 2017 +0200
+
+    Merge pull request #29 from Yahula/Yahel
+
+    update
+
+commit b16d9f6c9d11d3268107a45b3c0930ca645e8f1c
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 18 23:20:50 2017 +0200
+
+    update
+
+commit 90abcf76fb3b4ef443d643f885b672c965e2b692
+Merge: 237ff09 cb8b969
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Sat Dec 16 21:53:04 2017 +0200
+
+    Merge pull request #28 from Yahula/Yahel
+
+    update
+
+commit cb8b9699533616f5ce900e198c49ccd56d9443ab
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Sat Dec 16 21:50:03 2017 +0200
+
+    update
+
+commit 237ff090b8ea64169429d851720f3bc4d16b2ca9
+Merge: 0de78be df7d489
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Dec 14 22:35:43 2017 +0200
+
+    Merge pull request #27 from Yahula/sagi1
+
+    Rebase all the mess
+
+commit df7d489157fde7c6823ce9c35ab106c9158e9efb
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Thu Dec 14 21:57:06 2017 +0200
+
+    Rebase all the mess
+
+commit 0de78bec629734511e408a0703c16cbd28a46ff8
+Merge: 9691c63 93c71aa
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Dec 13 19:52:30 2017 +0200
+
+    Merge pull request #26 from Yahula/sagi1
+
+    Rebase all the mess
+
+commit 93c71aa9eb06ed949fbe00e8ed6a57380108646c
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Wed Dec 13 19:49:58 2017 +0200
+
+    Rebase all the mess
+
+commit 9691c63bddba8bbe0776de8c1df2ca6a264149e3
+Merge: e84f84a f249853
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Dec 13 17:25:14 2017 +0200
+
+    Merge pull request #25 from Yahula/Yahel
+
+    almost ready
+
+commit f2498535b41a651bad9a9e8e46ff43709654d8ff
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Wed Dec 13 17:24:33 2017 +0200
+
+    almost ready
+
+commit e84f84a36d92e8ce1d110a1a2417fe734e55c917
+Merge: 831962e 6ae5ea7
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Dec 12 20:41:32 2017 +0200
+
+    Merge pull request #24 from Yahula/Yahel
+
+    2 clients check
+
+commit 6ae5ea7e81c88d5723c66b6bd8df73620f77aa9b
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Dec 12 20:40:55 2017 +0200
+
+    2 clients check
+
+commit 831962ea6b487b1839fca8a5cecefcd0c7281e98
+Merge: 96de4ff 617f565
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Dec 11 21:49:55 2017 +0200
+
+    Merge pull request #23 from Yahula/Yahel
+
+    Added remote player
+
+commit 617f5654994a7c2ede191935e43f7254ecc92d3d
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 11 21:49:12 2017 +0200
+
+    Added remote player
+    Game class modification to support remote player
+
+commit 96de4ff840e62a516f2d82a1da81250553be8be6
+Merge: fed4b7d b7df489
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Dec 11 21:42:54 2017 +0200
+
+    Merge pull request #22 from Yahula/Sagi
+
+    Sagi
+
+commit b7df4897cf96924ee87b4bf175255b624606f2f5
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Dec 11 21:14:26 2017 +0200
+
+    copy consttructor to Disk
+
+commit 9594fb76b6e93d42af6f43b9f6fc9c555c657a58
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Dec 11 21:13:01 2017 +0200
+
+    comments!!
+
+commit fed4b7d9f8c218b9a74c823ef34d41961b41e970
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Mon Dec 11 01:23:32 2017 +0200
+
+    Client - start of work
+
+commit 8bb52bc903851ecd14d4ff0eed5642615f2eacbe
+Merge: ad048b7 d95a464
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 23:54:00 2017 +0200
+
+    Merge pull request #21 from Yahula/Sagi
+
+    comments!!
+
+commit d95a46460ebcfb7e13a8edd6e11b73d95471d3e1
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Thu Nov 30 23:50:53 2017 +0200
+
+    comments!!
+
+commit ad048b76a884185fdd3398cb3069e896f4b44cfa
+Merge: 95d7dbf 95305fb
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 22:23:46 2017 +0200
+
+    Merge pull request #20 from Yahula/Yahel
+
+    sagi update
+
+commit 95305fb9b231592f7e07ecc60ef5ade99200ec75
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Nov 30 22:23:11 2017 +0200
+
+    sagi update
+
+commit 95d7dbfc1e013e2e13860dfdfe741e73097e6ab0
+Merge: cb9f63e 4c50da4
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 13:54:42 2017 +0200
+
+    Merge pull request #19 from Yahula/Yahel
+
+    sagi update
+
+commit 4c50da4959b02218c66a856f0b34dd925f7bd9bf
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Nov 30 13:54:16 2017 +0200
+
+    sagi update
+
+commit cb9f63e7f346fbdf9eebb725361cf2f3b7283e5b
+Merge: 404b970 f5011cc
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 13:43:18 2017 +0200
+
+    Merge pull request #18 from Yahula/Yahel
+
+    Google test environment
+
+commit f5011cc18064e17648329987ee6dc5aba644bc45
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Nov 30 13:42:24 2017 +0200
+
+    Google test environment
+
+commit 404b970b8629b7bd1bf9525bd72b799030a1b87a
+Merge: 93b87b7 2f2e177
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 13:10:57 2017 +0200
+
+    Merge pull request #17 from Yahula/Sagi
+
+    Sagi
+
+commit 2f2e1771ea9d9bf7517efaf1196431f9b5282250
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Thu Nov 30 13:09:48 2017 +0200
+
+    AI Player complete!
+    + Change in gameRules
+
+commit 93b87b7b9851eb9cad2cf0b0e311e311b0c08099
+Merge: 0fbbbbd 7d270b5
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Thu Nov 30 13:06:33 2017 +0200
+
+    Merge pull request #15 from Yahula/Yahel
+
+    Test 1
+
+commit 7d270b520fdeffa1b5afeff1c539710fe9b4c756
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Thu Nov 30 13:05:49 2017 +0200
+
+    Test 1
+
+commit b6b76109d282ad81dc7527597724435a4959b4ca
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Thu Nov 30 13:05:42 2017 +0200
+
+    AI Player update + Change in gameRules
+
+commit 0fbbbbd2a991d04cffd866eda3ae6dea861b15be
+Merge: 7fa4f0e f4fb192
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 21:19:02 2017 +0200
+
+    Merge pull request #14 from Yahula/Yahel
+
+    Google test environment work
+
+commit 7fa4f0eae7942966ff556f417adfacd27ffd8bf9
+Merge: 495bec9 e973b5f
+Author: SagiShaashua <33721922+SagiShaashua@users.noreply.github.com>
+Date:   Wed Nov 29 18:58:43 2017 +0200
+
+    Merge pull request #13 from Yahula/Sagi
+
+    Sagi
+
+commit e973b5fce9cbc95d7fcf809d0346ceed3f840466
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Wed Nov 29 18:44:41 2017 +0200
+
+    AI Player update + Change in gameRules
+
+commit 425d9753422d89d33f8a9fab09f30ec11b194e39
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Wed Nov 29 16:17:55 2017 +0200
+
+    AI Player update + Change in gameRules
+
+commit f4fb192e5beefbe41b91c8fbfd9ad8e914dfe47a
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Wed Nov 29 14:40:14 2017 +0200
+
+    Google test environment work
+
+commit 495bec977c6ab17aec3d99bbac208049b5404a12
+Merge: 74329b7 d6e0823
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 13:55:18 2017 +0200
+
+    Merge pull request #12 from Yahula/Yahel
+
+    Good version - no AI yet
+
+commit d6e0823c353e274f047d1abfa2653eea6a114cd2
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Wed Nov 29 13:53:33 2017 +0200
+
+    Good version - no AI yet
+
+commit 74329b7f14f854ba1cd707e0a06d33ed6b66162b
+Merge: d3336cf 26eafb9
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 13:44:09 2017 +0200
+
+    Merge pull request #11 from Yahula/Yahel
+
+    Exception correction
+
+commit 26eafb9c5154bfcabb891ea302b89299cac067c0
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Wed Nov 29 13:41:03 2017 +0200
+
+    Exception correction
+
+commit d3336cf14823174ba05faa6b23f9b17bf37a745a
+Merge: 9a0dc8f 39eabf2
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 13:03:58 2017 +0200
+
+    Merge pull request #10 from Yahula/Yahel
+
+    Score function added to Reversi
+
+commit 39eabf2a96a657b942e38a47784b364cdcc9afa2
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Wed Nov 29 13:02:55 2017 +0200
+
+    Score function added to Reversi
+
+commit 9a0dc8ff19ba5195396df5782a0d00fc4637078f
+Merge: c818f6d b540895
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 10:45:30 2017 +0200
+
+    Merge pull request #9 from Yahula/Sagi
+
+    general update
+
+commit b5408958a008a78bd7e0f146e0bd8d33d07e71ae
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Wed Nov 29 10:21:04 2017 +0200
+
+    AI Player update
+
+commit c818f6d7259890e228a7c392171d2961f898ab2a
+Merge: 381ec74 c494ddc
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Wed Nov 29 00:41:03 2017 +0200
+
+    Merge pull request #8 from Yahula/Sagi
+
+    Sagi
+
+commit c494ddcbb06af2c0d0b931773d9836aaa9edbe1d
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Wed Nov 29 00:36:55 2017 +0200
+
+    AI Player update + Change in gameRules
+
+commit 2e7ebae815a0bb1da686e8b58b45934c801e10e2
+Merge: bacd3d8 381ec74
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Tue Nov 28 23:36:41 2017 +0200
+
+    Merge remote-tracking branch 'remotes/origin/master' into Sagi
+
+commit bacd3d8cc6dbda444927130be3092059610b0599
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 23:05:37 2017 +0200
+
+    AI Player
+
+commit f41760f673830cc8a7d38498dddcc5bafe829140
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 21:16:17 2017 +0200
+
+    AI Player
+
+commit 1c8a8a785878889b212d2a1a3a586470d711d606
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 20:46:08 2017 +0200
+
+    added google tests (not working yet)
+    added score count
+
+commit b7103d298842e79152b5cfe643acae0a03b69d6f
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 16:09:34 2017 +0200
+
+    Directory arrangement
+
+commit 3f23d38052681ad2fed63d23d5fbf277f8007c9b
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 15:21:45 2017 +0200
+
+    Merged code - Sagi and Yahel
+
+commit 381ec74524dfd1a707b5a52f7313226b106a9908
+Merge: a1ff2e3 a4f9cc8
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 23:06:26 2017 +0200
+
+    Merge pull request #7 from Yahula/Yahel
+
+    AI Player
+
+commit a4f9cc8215a95ab5a32e229929f39afac17f975f
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 23:05:37 2017 +0200
+
+    AI Player
+
+commit a1ff2e3a48e3c00fc2264cb419276abc76010d85
+Merge: 6b334a9 e677c50
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 21:17:47 2017 +0200
+
+    Merge pull request #6 from Yahula/Yahel
+
+    AI Player
+
+commit e677c504ef123a0845476f93b8be092113e6af7d
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 21:16:17 2017 +0200
+
+    AI Player
+
+commit 6b334a947443f02cf3c7ef7e06412a3d623859f1
+Merge: 3512973 dca1e1c
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 20:47:40 2017 +0200
+
+    Merge pull request #5 from Yahula/Yahel
+
+    update
+
+commit dca1e1c758c34570bcbdecbc6f505034d4a5c6f3
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 20:46:08 2017 +0200
+
+    added google tests (not working yet)
+    added score count
+
+commit 3512973bfb3ed9e69fb95a0c8381a2e3a74988e7
+Merge: 2c7538f 75dec74
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 16:11:50 2017 +0200
+
+    Merge pull request #4 from Yahula/Yahel
+
+    Directory arrangement
+
+commit 75dec74fdc50922005118fddcef06e9de27b497f
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 16:09:34 2017 +0200
+
+    Directory arrangement
+
+commit 2c7538f1486ecd74f9c0c97a6985d41ce6835d28
+Merge: e76e8d9 fb61123
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 15:27:24 2017 +0200
+
+    Merge pull request #3 from Yahula/Yahel
+
+    Merged code - Sagi and Yahel
+
+commit fb611230a5633495d347c8338b8d48bd465de311
+Merge: 902e9c3 e76e8d9
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Tue Nov 28 15:27:06 2017 +0200
+
+    Merge branch 'master' into Yahel
+
+commit 902e9c32217da798383b54615c3f59322aca0259
+Author: Yahel <yahel.ben.ishay@gmail.com>
+Date:   Tue Nov 28 15:21:45 2017 +0200
+
+    Merged code - Sagi and Yahel
+
+commit e76e8d913a4beced010b183b67c7a6cb4ff5d496
+Merge: 3ae4d4b ab40384
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Nov 27 23:38:59 2017 +0200
+
+    Merge pull request #2 from Yahula/Sagi
+
+    Sagi
+
+commit ab40384c3a39ea8a25b4b3ca765e6a8d311f35ed
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 23:37:15 2017 +0200
+
+    Added copy constractur for Baord class
+
+commit 7f7c8837c58214bd387d8d59cbc7ac1cd12ee750
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 22:15:31 2017 +0200
+
+    Added copy constractur for Baord class
+
+commit 3ae4d4b546c4f2ddd85b14b47fe1534f34f874b8
+Merge: 7ee58cc 1309ad2
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Nov 27 21:57:28 2017 +0200
+
+    Merge pull request #1 from Yahula/copycontractur
+
+    Copycontractur
+
+commit 1309ad20de8ac3108190f9934bad45322b9b24b1
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 21:55:02 2017 +0200
+
+    copy constractur for Baord
+
+commit 5a5b2f2346578b1f69e46650f7af98a3c685d224
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 21:36:57 2017 +0200
+
+    copy constractur for Baord
+
+commit 332584f63a21b9daa79bc60c8262d581e674e724
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 21:13:44 2017 +0200
+
+    copy constractur for Baord
+
+commit 18625289579fa9422649e9b76fa5c03d3b90603e
+Author: Sagi <sagishaashua@Gmail.com>
+Date:   Mon Nov 27 21:11:54 2017 +0200
+
+    copy constractur for Baord
+
+commit 7ee58ccf46e27f9b73cc474e1845f28c3014004c
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Nov 27 00:57:44 2017 +0200
+
+    Add files via upload
+
+commit ca0ade403f839224f6da866582b9d06f35049796
+Author: Yahula <34010493+Yahula@users.noreply.github.com>
+Date:   Mon Nov 27 00:54:37 2017 +0200
+
+    Initial commit
+(END)
